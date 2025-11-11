@@ -3,67 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Matrice des User Stories du Projet (Module > Epic > US)</title>
-    <link rel="icon" type="image/png" href="images/alfresco_icon.png" />
+    <link
+      rel="icon"
+      type="image/jpg"
+      href="../../assets/images/Redmine_icon.jpg"
+    />
 
     <!-- Scripts de protection d'accès -->
     <script src="../../assets/js/auth-guard.js"></script>
     <script src="../../assets/js/admin-guard.js"></script>
-
     <style>
-      /* ================================== */
-      /* === STYLES DU PANNEAU ENSEIGNANT === */
-      /* ================================== */
-
-      .admin-panel {
-        margin-top: 40px;
-        padding: 20px;
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      }
-
-      .admin-panel h3 {
-        margin-top: 0;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
-        color: #495057;
-      }
-
-      .admin-panel-controls {
-        display: flex;
-        align-items: center;
-        gap: 15px; /* Espace entre les éléments */
-      }
-
-      .admin-panel-controls label {
-        font-weight: bold;
-        color: #343a40;
-      }
-
-      .admin-panel-controls select {
-        padding: 8px 12px;
-        font-size: 1em;
-        border-radius: 4px;
-        border: 1px solid #ced4da;
-      }
-
-      .admin-panel-controls button {
-        padding: 10px 20px;
-        font-size: 1em;
-        font-weight: bold;
-        color: white;
-        background-color: #28a745; /* Vert pour "Générer" */
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .admin-panel-controls button:hover {
-        background-color: #218838;
-      }
-
       /* Styles généraux */
       body {
         font-family: Arial, sans-serif;
@@ -75,7 +24,6 @@
         border-bottom: 2px solid #ccc;
         padding-bottom: 10px;
       }
-
       /* Boutons de contrôle */
       .controls {
         margin-bottom: 20px;
@@ -93,7 +41,6 @@
       .controls button:hover {
         background-color: #31b0d5;
       }
-
       /* Styles des Modules (Niveau 1) */
       .toggle-module-header {
         background-color: #343a40; /* Couleur sombre principale */
@@ -119,7 +66,6 @@
         display: flex; /* Permet l'alignement du code/titre */
         align-items: center;
       }
-
       /* Style spécifique pour le code de l'Epic */
       .epic-code-tag {
         font-weight: bold;
@@ -131,12 +77,36 @@
         font-size: 0.9em;
         flex-shrink: 0;
       }
-
       /* Contenu des User Stories (Niveau 3) */
       .epic-content-list {
         list-style-type: none;
         padding-left: 40px;
         margin-top: 0;
+      }
+
+      /* Transitions et gestion de la réduction (Level 1 et Level 2) */
+      .module-content-wrapper,
+      .epic-content-list {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s;
+        overflow: hidden;
+        max-height: 5000px; /* Grande valeur pour déploiement */
+        opacity: 1;
+      }
+
+      /* MODULE RÉDUIT (Level 1): masque tous les Epics et US qu'il contient */
+      .module-container.collapsed .module-content-wrapper {
+        max-height: 0;
+        opacity: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      /* EPIC RÉDUIT (Level 2): masque toutes les User Stories */
+      .epic-container.collapsed .epic-content-list {
+        max-height: 0;
+        opacity: 0;
+        padding: 0;
+        margin: 0;
       }
       .user-story {
         background-color: white;
@@ -173,43 +143,54 @@
         text-align: left; /* Force l'alignement à gauche */
         flex-grow: 1; /* Permet au titre de prendre l'espace restant */
       }
-
       .complexity-tag {
         font-weight: bold;
         padding: 4px 10px; /* Augmenté légèrement pour le mot complet */
         border-radius: 3px;
         margin-left: 10px;
-        background-color: #f0ad4e;
         color: white;
         font-size: 0.8em;
         flex-shrink: 0;
       }
-
-      /* Transitions et gestion de la réduction (Level 1 et Level 2) */
-      .module-content-wrapper,
-      .epic-content-list {
-        transition: max-height 0.3s ease-in-out, opacity 0.3s;
-        overflow: hidden;
-        max-height: 5000px; /* Grande valeur pour déploiement */
-        opacity: 1;
+      .c-basse {
+        background-color: #28a745;
+        color: white;
       }
-
-      /* MODULE RÉDUIT (Level 1): masque tous les Epics et US qu'il contient */
-      .module-container.collapsed .module-content-wrapper {
-        max-height: 0;
-        opacity: 0;
-        padding: 0;
-        margin: 0;
+      .c-moyenne {
+        background-color: #ffc107;
+        color: white;
       }
-
-      /* EPIC RÉDUIT (Level 2): masque toutes les User Stories */
-      .epic-container.collapsed .epic-content-list {
-        max-height: 0;
-        opacity: 0;
-        padding: 0;
-        margin: 0;
+      .c-elevee {
+        background-color: #dc3545;
+        color: white;
       }
-
+      .legend {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 15px 0 25px;
+        font-size: 0.85em;
+      }
+      .legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .legend .chip {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        display: inline-block;
+      }
+      .legend .basse {
+        background: #28a745;
+      }
+      .legend .moyenne {
+        background: #ffc107;
+      }
+      .legend .elevee {
+        background: #dc3545;
+      }
       /* Icônes */
       .icon {
         display: inline-block;
@@ -222,66 +203,81 @@
       .epic-container.collapsed .toggle-epic-header .icon {
         transform: rotate(-90deg);
       }
-      .download-link {
-        text-align: center; /* Aligner à droite sous le titre principal */
-        margin-top: -5px; /* Monter légèrement sous le titre */
-        margin-bottom: 20px;
+      /* Lien Accueil */
+      .home-link {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        font-size: 0.95em;
+        font-weight: 600;
+        text-decoration: none;
+        color: #495057;
+        padding: 8px 15px;
+        border-radius: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease-in-out;
+      }
+      .home-link:hover {
+        background-color: #e9ecef;
+        color: #007bff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
       }
 
+      /* Footer */
+      footer {
+        margin-top: 50px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+      }
+      footer p {
+        margin: 10px 0 0 0;
+        font-size: 0.8em;
+        color: #000000;
+        text-align: center;
+      }
+
+      /* Lien de téléchargement */
+      .download-link {
+        text-align: center;
+        margin-top: -5px;
+        margin-bottom: 20px;
+      }
       .download-link a {
         display: inline-block;
         padding: 5px 10px;
-        background-color: #4169e1; /* Vert */
+        background-color: #4169e1;
         color: white;
         text-decoration: none;
         border-radius: 5px;
         font-weight: bold;
         font-size: 0.9em;
       }
-      /* ================================== */
-      /* === STYLES DU LIEN ACCUEIL === */
-      /* ================================== */
-
-      .home-link {
-        /* Positionnement */
-        position: fixed; /* Reste visible même en défilement */
-        top: 20px;
-        left: 20px;
-        z-index: 1000; /* Assure qu'il est au-dessus des autres éléments */
-
-        /* Style du texte */
-        font-size: 0.95em;
-        font-weight: 600;
-        text-decoration: none;
-        color: #495057; /* Couleur de texte neutre */
-
-        /* Style du bouton/lien */
-        padding: 8px 15px;
-        border-radius: 20px; /* Bords arrondis pour l'effet soigné */
-        background-color: #f8f9fa; /* Fond très clair */
-        border: 1px solid #dee2e6;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-        /* Transitions pour le côté soigné */
-        transition: all 0.2s ease-in-out;
+      .search-bar {
+        margin: 10px 0 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
       }
-      /* Ajuste le footer pour s'étendre sur toute la largeur */
-      footer {
-        grid-column: 1 / -1;
-        margin-top: 5mm;
-        border-top: 1px solid #ccc;
-        padding-top: 3px;
+      .search-bar input {
+        padding: 8px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        min-width: 280px;
+        font-size: 0.9em;
       }
-      footer p {
-        margin: 10px 0 0 0;
-        font-size: 0.8em;
-        color: #000000;
+      .filter-select {
+        padding: 8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 0.9em;
       }
-      .home-link:hover {
-        background-color: #e9ecef; /* Changement subtil au survol */
-        color: #007bff; /* Met l'accent sur la couleur primaire au survol */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre plus marquée */
-        transform: translateY(-1px); /* Effet léger de "levée" */
+      .hidden {
+        display: none !important;
       }
 
       /* Option pour les petits écrans (discrétion) */
@@ -293,2843 +289,322 @@
           left: 10px;
         }
       }
+
+      /* ================================== */
+      /* === STYLES DU PANNEAU ENSEIGNANT === */
+      /* ================================== */
+
+      .admin-panel {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .admin-panel h3 {
+        margin-top: 0;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        color: #495057;
+      }
+
+      .admin-panel-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .admin-panel-controls label {
+        font-weight: bold;
+        color: #343a40;
+      }
+
+      .admin-panel-controls select {
+        padding: 8px 12px;
+        font-size: 1em;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+      }
+
+      .admin-panel-controls button {
+        padding: 10px 20px;
+        font-size: 1em;
+        font-weight: bold;
+        color: white;
+        background-color: #28a745;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .admin-panel-controls button:hover {
+        background-color: #218838;
+      }
+
+      /* Styles pour les stats dans le fichier généré */
+      .stats-container {
+        margin-bottom: 30px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+      }
+
+      .stats-header {
+        background-color: #e9ecef;
+        color: #343a40;
+        padding: 15px;
+        cursor: pointer;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        font-size: 1.2em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+
+      .stats-content {
+        padding: 20px;
+        transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        overflow: hidden;
+      }
+
+      .stats-grid {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .stat-card {
+        padding: 15px;
+        border-radius: 5px;
+        width: 30%;
+        color: white;
+      }
+
+      .stat-value {
+        font-size: 2em;
+        font-weight: bold;
+      }
+
+      .stat-label {
+        margin-top: 5px;
+        font-size: 0.9em;
+      }
+
+      .module-color {
+        background-color: #495057;
+      }
+      .epic-color {
+        background-color: #17a2b8;
+      }
+      .us-color {
+        background-color: #28a745;
+      }
+
+      .stats-grid-teams {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+        justify-content: flex-start;
+      }
+
+      .team-card {
+        padding: 12px 15px;
+        border-radius: 5px;
+        min-width: 150px;
+        flex-grow: 1;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .team-card-label {
+        font-size: 0.9em;
+        opacity: 0.8;
+      }
+
+      .team-card-value {
+        font-size: 1.5em;
+        margin-top: 5px;
+        line-height: 1;
+      }
+
+      .complexity-summary-cards {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .complexity-card {
+        padding: 12px 15px;
+        border-radius: 5px;
+        min-width: 150px;
+        flex-grow: 1;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .complexity-card.c1 {
+        background-color: #20c997;
+      }
+      .complexity-card.c2 {
+        background-color: #fd7e14;
+      }
+
+      .complexity-card-value {
+        font-size: 1.4em;
+        line-height: 1;
+      }
+
+      .complexity-card-label {
+        font-size: 0.8em;
+        margin-top: 4px;
+        opacity: 0.9;
+      }
+
+      .team-tag {
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 3px;
+        margin-left: 10px;
+        background-color: #007bff;
+        color: white;
+        font-size: 0.8em;
+        flex-shrink: 0;
+      }
+
+      .filters-bar {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .filters-bar strong {
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+
+      .filters-bar button {
+        padding: 8px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      .filters-bar button:hover {
+        background-color: #5a6268;
+      }
+
+      .filters-bar button.active {
+        background-color: #007bff;
+      }
+
+      .filters-bar select {
+        background-color: white;
+        color: #333;
+        border: 1px solid #ccc;
+        height: 35px;
+        min-width: 130px;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      #export-csv-btn {
+        background-color: #ffc107;
+        color: black;
+        font-weight: bold;
+        margin-left: auto;
+      }
+
+      .user-story.hidden-by-filter,
+      .user-story.hidden-by-search {
+        display: none;
+      }
+
+      .module-container.hidden-by-search,
+      .epic-container.hidden-by-search {
+        display: none;
+      }
     </style>
   </head>
   <body>
-    <a href="../main/menu.html" class="home-link" title="Retour à la page d'accueil">
+    <a
+      href="../main/menu.html"
+      class="home-link"
+      title="Retour à la page d'accueil"
+    >
       🏠 Accueil
     </a>
+
     <center>
       <h1>Matrice des User Stories du Projet (Module > Epic > US)</h1>
     </center>
+
     <p class="download-link">
       <a
-        href="downloads/Liste des fonctions Alfresco.xlsx"
-        download="Liste des fonctions Alfresco.xlsx"
-        title="Télécharger la matrice des US en format Excel"
+        href="../../docs/csv/RepartitionRedmine.csv"
+        download="RepartitionRedmine.csv"
+        title="Télécharger la matrice des US en format CSV"
       >
-        ⬇️ Télécharger la matrice des US (Excel)
+        ⬇️ Télécharger la matrice des US (CSV)
       </a>
     </p>
+
     <div class="controls">
       <button onclick="collapseAllEpics()">Réduire toutes les US</button>
       <button onclick="collapseAllModules()">Réduire tous les Epics/US</button>
       <button onclick="expandAll()">Déployer Tout</button>
     </div>
 
-    <div class="hierarchy-container">
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ1 : Accueil (Gestion du tableau de bord)
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ1.BF1</span> Disposition
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF1.1</span>
-                  <span class="us-title"
-                    >Sélectionner une disposition en colonne(s)</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ1.BF2</span> Dashlets
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF2.1</span>
-                  <span class="us-title">Ajouter des Dashlets</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF2.2</span>
-                  <span class="us-title">Déplacer des Dashlets</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF2.3</span>
-                  <span class="us-title">Supprimer des Dashlets</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ1.BF3</span> Panneau de démarrage
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF3.1</span>
-                  <span class="us-title"
-                    >Afficher le panneau de démarrage sur le tableau de
-                    bord</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF3.2</span>
-                  <span class="us-title"
-                    >Masquer le panneau de démarrage sur le tableau de
-                    bord</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ1.BF4</span> Recherche
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF4.1</span>
-                  <span class="us-title">Recherche simple</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ1.BF4.2</span>
-                  <span class="us-title">Recherche avancée</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ2 : Mes fichiers / Fichiers paratgés
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF1</span> Sélection
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF1.1</span>
-                  <span class="us-title">Sélectionner documents</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF1.2</span>
-                  <span class="us-title">Sélectionner dossiers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF1.3</span>
-                  <span class="us-title">Sélectionner tout</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF1.4</span>
-                  <span class="us-title">Inverser la sélection</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF1.5</span>
-                  <span class="us-title">Sélectionner aucun</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF2</span> Eléments sélectionnés
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF2.1</span>
-                  <span class="us-title">Télécharger sous forme de zip</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF2.2</span>
-                  <span class="us-title">Copier vers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF2.3</span>
-                  <span class="us-title">Déplacer vers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF2.4</span>
-                  <span class="us-title">Supprimer</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF2.5</span>
-                  <span class="us-title">Désélectionner</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF3</span> Gestion dossier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.1</span>
-                  <span class="us-title">Créer dossier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.2</span>
-                  <span class="us-title"
-                    >Créer un dossier à partir d'un modèle</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.3</span>
-                  <span class="us-title"
-                    >Ajouter un dossier par glisser/déplacer</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.4</span>
-                  <span class="us-title">Télécharger sous forme de zip</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.5</span>
-                  <span class="us-title">Afficher les détails</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.6</span>
-                  <span class="us-title">Editer les propriétés</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.7</span>
-                  <span class="us-title">Copier vers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.8</span>
-                  <span class="us-title">Déplacer vers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.9</span>
-                  <span class="us-title">Supprimer dossier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.10</span>
-                  <span class="us-title"
-                    >Devenir propriétaire d'un dossier</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.11</span>
-                  <span class="us-title">Changer le type d'un dossier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF3.12</span>
-                  <span class="us-title"
-                    >Partager le dossier avec un lien web</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF4</span> Gérer les droits
-              d'accès d'un dossier/fichier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.1</span>
-                  <span class="us-title">Hériter les droits d'accès</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.2</span>
-                  <span class="us-title"
-                    >Ne pas hériter les droits d'accès</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.3</span>
-                  <span class="us-title">Ajouter un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.4</span>
-                  <span class="us-title">Ajouter un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.5</span>
-                  <span class="us-title">Changer le rôle d'un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.6</span>
-                  <span class="us-title">Changer le rôle d'un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.7</span>
-                  <span class="us-title">Supprimer un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF4.8</span>
-                  <span class="us-title">Supprimer un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF5</span> Gérer les règles d'un
-              dossier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.1</span>
-                  <span class="us-title">Créer une règle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.2</span>
-                  <span class="us-title">Modifier une règle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.3</span>
-                  <span class="us-title">Supprimer une règle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.4</span>
-                  <span class="us-title">Hériter les règles</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.5</span>
-                  <span class="us-title">Ne pas hériter les règles</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.6</span>
-                  <span class="us-title"
-                    >Exécuter une règle pour le dossier</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.7</span>
-                  <span class="us-title"
-                    >Exécuter une règle pour le dossier et ses
-                    sous-dossiers</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.8</span>
-                  <span class="us-title">Réorganiser les règles</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.9</span>
-                  <span class="us-title"
-                    >Réinitialiser l'organisation des règles</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF5.10</span>
-                  <span class="us-title">Associer un jeu de règles</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF6</span> Gérer les aspects d'un
-              dossier/fichier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF6.1</span>
-                  <span class="us-title">Ajouter un aspect</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF6.2</span>
-                  <span class="us-title">Supprimer un aspect</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF7</span> Gestion fichier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.1</span>
-                  <span class="us-title">Créer un fichier texte</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.2</span>
-                  <span class="us-title">Créer un fichier Html</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.3</span>
-                  <span class="us-title">Créer un fichier Xml</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.4</span>
-                  <span class="us-title"
-                    >Créer un fichier à partir d'un modèle</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.5</span>
-                  <span class="us-title">Importer un fichier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.6</span>
-                  <span class="us-title"
-                    >Ajouter un fichier par glisser/déplacer</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.7</span>
-                  <span class="us-title">Télécharger un fichier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.8</span>
-                  <span class="us-title">Voir dans le navigateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.9</span>
-                  <span class="us-title"
-                    >Editer les propriétés d'un fichier</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.10</span>
-                  <span class="us-title">Modifier dans Alfresco</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.11</span>
-                  <span class="us-title">Editer hors ligne</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.12</span>
-                  <span class="us-title">Importer une nouvelle version</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.13</span>
-                  <span class="us-title">Copier vers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.14</span>
-                  <span class="us-title">Déplacer vers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.15</span>
-                  <span class="us-title">Supprimer fichier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.16</span>
-                  <span class="us-title">Démarrer un workflow/tâche</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.17</span>
-                  <span class="us-title"
-                    >Devenir propriétaire d'un fichier</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.18</span>
-                  <span class="us-title">Changer le type d'un fichier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF7.19</span>
-                  <span class="us-title"
-                    >Partager un fichier avec un lien web</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF8</span> Gestion de l'historique
-              des versions
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF8.1</span>
-                  <span class="us-title"
-                    >Afficher les propriétés d'une version</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF8.2</span>
-                  <span class="us-title">Télécharger une version</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF8.3</span>
-                  <span class="us-title">Rétablir une version</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF9</span> Réseaux sociaux
-              dossier/ fichier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.1</span>
-                  <span class="us-title">Définir comme favori</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.2</span>
-                  <span class="us-title">Aimer</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.3</span>
-                  <span class="us-title">Ajouter un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.4</span>
-                  <span class="us-title">Partager par email</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.5</span>
-                  <span class="us-title">Partager sur Facebook</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.6</span>
-                  <span class="us-title">Partager sur Twitter</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.7</span>
-                  <span class="us-title">Partager sur Google+</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.8</span>
-                  <span class="us-title">Ajouter un tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF9.9</span>
-                  <span class="us-title">Supprimer un tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF10</span> Tri des fichiers et
-              dossiers
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF10.1</span>
-                  <span class="us-title">Trier par caractéristique</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF10.2</span>
-                  <span class="us-title">Choisir le type de tri</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF11</span> Filtrer l'affichage
-              des dossiers/fichiers
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF11.1</span>
-                  <span class="us-title">Filtrer par documents</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF11.2</span>
-                  <span class="us-title"
-                    >Filtrer par arborescence (Mes fichiers, Fichiers partagés,
-                    entrepôt)</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF11.3</span>
-                  <span class="us-title">Filtrer par catégories</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF11.4</span>
-                  <span class="us-title">Filtrer par tags</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ2.BF12</span> Modifier les options
-              d'affichage
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF12.1</span>
-                  <span class="us-title">Cacher/afficher les dossiers</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF12.2</span>
-                  <span class="us-title">Cacher/afficher le fil d'ariane</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF12.3</span>
-                  <span class="us-title">Afficher en pleine fenêtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF12.4</span>
-                  <span class="us-title">Afficher en plein écran</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ2.BF12.5</span>
-                  <span class="us-title"
-                    >Afficher selon différents types de vues</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ3 : Sites
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF1</span> Recherche de sites
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.1</span>
-                  <span class="us-title">Rechercher un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.2</span>
-                  <span class="us-title">Ajouter un sites aux favoris</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.3</span>
-                  <span class="us-title">Aperçu des sites récents</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.4</span>
-                  <span class="us-title">Demander à rejoindre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.5</span>
-                  <span class="us-title">Annuler la demande</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.6</span>
-                  <span class="us-title">Rejoindre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.7</span>
-                  <span class="us-title">Se désabonner</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF1.8</span>
-                  <span class="us-title">Supprimer un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF2</span> Gestion des sites
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF2.1</span>
-                  <span class="us-title">Créer un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF2.2</span>
-                  <span class="us-title">Modifier le détail du site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF2.3</span>
-                  <span class="us-title">Supprimer un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF2.4</span>
-                  <span class="us-title">Se désabonner d'un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF3</span> Personnaliser le
-              tableau de bord d'un site
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF3.1</span>
-                  <span class="us-title"
-                    >Sélectionner disposition en colonne(s)</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF3.2</span>
-                  <span class="us-title">Ajouter des Dashlets</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF3.3</span>
-                  <span class="us-title">Déplacer des Dashlets</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF3.4</span>
-                  <span class="us-title">Supprimer de Dashlets</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF4</span> Membres du site
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.1</span>
-                  <span class="us-title">Ajouter un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.2</span>
-                  <span class="us-title"
-                    >Modifier le rôle d'un utilisateur</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.3</span>
-                  <span class="us-title">Supprimer un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.4</span>
-                  <span class="us-title">Ajouter un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.5</span>
-                  <span class="us-title">Modifier le rôle d'un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.6</span>
-                  <span class="us-title">Supprimer un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.7</span>
-                  <span class="us-title">Gérer un invitation</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF4.8</span>
-                  <span class="us-title">Gérer un requête</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF5</span> Personnaliser le site
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF5.1</span>
-                  <span class="us-title">Modifier le thème du site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF5.2</span>
-                  <span class="us-title">Ajouter une page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF5.3</span>
-                  <span class="us-title">Supprimer une page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF6</span> Module calendrier
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.1</span>
-                  <span class="us-title">Ajouter un événement</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.2</span>
-                  <span class="us-title">Déplacer un événement</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.3</span>
-                  <span class="us-title">Modifier un événement</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.4</span>
-                  <span class="us-title">Supprimer un événement</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.5</span>
-                  <span class="us-title"
-                    >Changer le mode d'affichage du calendrier</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.6</span>
-                  <span class="us-title">Naviguer dans le calendrier</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF6.7</span>
-                  <span class="us-title"
-                    >Filtrer l'affichage des événements par tag</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF7</span> Module Wiki
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.1</span>
-                  <span class="us-title">Créer une nouvelle page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.2</span>
-                  <span class="us-title">Renommer une page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.3</span>
-                  <span class="us-title">Supprimer une page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.4</span>
-                  <span class="us-title">Modifier une page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.5</span>
-                  <span class="us-title"
-                    >Afficher la liste des pages du wiki</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.6</span>
-                  <span class="us-title">Afficher la page principale</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.7</span>
-                  <span class="us-title">Afficher les détails d'une page</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.8</span>
-                  <span class="us-title">Voir une version</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.9</span>
-                  <span class="us-title">Filtrer les pages par critère</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF7.10</span>
-                  <span class="us-title">Filtrer les pages par tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF8</span> Module discussion
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.1</span>
-                  <span class="us-title">Créer un nouveau sujet</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.2</span>
-                  <span class="us-title">Modifier un sujet</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.3</span>
-                  <span class="us-title">Supprimer un sujet</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.4</span>
-                  <span class="us-title">Répondre à un sujet</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.5</span>
-                  <span class="us-title">Afficher un sujet</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.6</span>
-                  <span class="us-title">Filtrer les sujets par critère</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.7</span>
-                  <span class="us-title">Filtrer les sujets par tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF8.8</span>
-                  <span class="us-title"
-                    >Basculer entre vue simplifiée et vue détaillée</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF9</span> Module Blog
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.1</span>
-                  <span class="us-title">Créer un nouvel article</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.2</span>
-                  <span class="us-title">Modifier un article</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.3</span>
-                  <span class="us-title">Supprimer un article</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.4</span>
-                  <span class="us-title">Ajouter un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.5</span>
-                  <span class="us-title">Modifier un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.6</span>
-                  <span class="us-title">Supprimer un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.7</span>
-                  <span class="us-title">Filtrer les articles par critère</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.8</span>
-                  <span class="us-title">Filtrer les articles par période</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.9</span>
-                  <span class="us-title">Filtrer les articles par tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF9.10</span>
-                  <span class="us-title"
-                    >Basculer entre vue simplifiée et vue détaillée</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF10</span> Module liens
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.1</span>
-                  <span class="us-title">Créer un nouveau lien</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.2</span>
-                  <span class="us-title">Modifier un lien</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.3</span>
-                  <span class="us-title">Supprimer un lien</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.4</span>
-                  <span class="us-title">Ajouter un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.5</span>
-                  <span class="us-title">Modifier un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.6</span>
-                  <span class="us-title">Supprimer un commentaire</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.7</span>
-                  <span class="us-title">Filtrer les liens par critère</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.8</span>
-                  <span class="us-title">Filtrer les liens par tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF10.9</span>
-                  <span class="us-title"
-                    >Basculer entre vue simplifiée et vue détaillée</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ3.BF11</span> Module listes de
-              données
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.1</span>
-                  <span class="us-title"
-                    >Créer une nouvelle liste de données</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.2</span>
-                  <span class="us-title"
-                    >Editer les détails d'une liste de données</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.3</span>
-                  <span class="us-title">Supprimer une liste de données</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.4</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste agenda</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.5</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste carnet d'adresse</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.6</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste d'événements</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.7</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste de contacts</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.8</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste de publication</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.9</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste de tâches</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.10</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste de tâches avancée</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.11</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste de tâches simples</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.12</span>
-                  <span class="us-title"
-                    >Créer un nouvel élement de liste ordre du jour</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.13</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste agenda</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.14</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste carnet d'adresse</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.15</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste d'événements</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.16</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste de contacts</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.17</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste de publication</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.18</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste de tâches</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.19</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste de tâches avancée</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.20</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste de tâches simples</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.21</span>
-                  <span class="us-title"
-                    >Modifier un élément de liste ordre du jour</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.22</span>
-                  <span class="us-title">Dupliquer un élément</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.23</span>
-                  <span class="us-title">Supprimer un élément</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.24</span>
-                  <span class="us-title"
-                    >Dupliquer plusieurs éléments sélectionnés</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ3.BF11.25</span>
-                  <span class="us-title"
-                    >Supprimer plusieurs éléments sélectionnés</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ4 : Tâche et workflow
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ4.BF1</span> Gérer les workflows et
-              les tâches
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.1</span>
-                  <span class="us-title">Démarrer un workflow/tâche</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.2</span>
-                  <span class="us-title">Afficher une tâche</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.3</span>
-                  <span class="us-title">Afficher le workflow</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.4</span>
-                  <span class="us-title">Annuler le workflow/tâche</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.5</span>
-                  <span class="us-title">Modifier un workflow/tâche</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.6</span>
-                  <span class="us-title">Afficher le schéma du processus</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.7</span>
-                  <span class="us-title">Afficher l’historique</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF1.8</span>
-                  <span class="us-title">Afficher les workflows initiés</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ4.BF2</span> Filtrer l'affichage des
-              tâches et workflows
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF2.1</span>
-                  <span class="us-title"
-                    >Afficher les workflows par statut</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF2.2</span>
-                  <span class="us-title"
-                    >Afficher les workflows par échéance</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF2.3</span>
-                  <span class="us-title"
-                    >Afficher les workflows par date de démarrage</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF2.4</span>
-                  <span class="us-title"
-                    >Afficher les workflows par priorité</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF2.5</span>
-                  <span class="us-title">Afficher les workflows par type</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ4.BF2.6</span>
-                  <span class="us-title"
-                    >Afficher les workflows par personne assignée</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ5 : Personnes
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ5.BF1</span> Gérer les personnes
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ5.BF1.1</span>
-                  <span class="us-title">Recherche de personnes</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ5.BF1.2</span>
-                  <span class="us-title"
-                    >Suivre/ne pas suivre une personne et voir ses dernières
-                    activités</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ6 : Outils admin
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF1</span> Options de
-              l’application
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF1.1</span>
-                  <span class="us-title">Modifier le thème</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF1.2</span>
-                  <span class="us-title">Modifier le logo</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF2</span> Gestionnaire de
-              catégories
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF2.1</span>
-                  <span class="us-title">Ajouter une catégorie</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF2.2</span>
-                  <span class="us-title">Ajouter une sous catégorie</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF2.3</span>
-                  <span class="us-title">Editer une catégorie</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF2.4</span>
-                  <span class="us-title">Editer une sous catégorie</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF2.5</span>
-                  <span class="us-title">Supprimer une catégorie</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF2.6</span>
-                  <span class="us-title">Supprimer une sous catégorie</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF3</span> Gestionnaire de
-              recherche (Création de filtres)
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.1</span>
-                  <span class="us-title">Créer un nouvau filtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.2</span>
-                  <span class="us-title">Editer un filtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.3</span>
-                  <span class="us-title">Supprimer un filtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.4</span>
-                  <span class="us-title">Déplacer un filtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.5</span>
-                  <span class="us-title">Editer le nom d'un filtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.6</span>
-                  <span class="us-title"
-                    >Editer les propriétés d'un filtre</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.7</span>
-                  <span class="us-title">Editer le type d'un filtre</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF3.8</span>
-                  <span class="us-title"
-                    >Editer le type d'affichage des résultats de recherche d'un
-                    filtre</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF4</span> Gestionnaire de tags
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF4.1</span>
-                  <span class="us-title">Modifier un tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF4.2</span>
-                  <span class="us-title">Supprimer un tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF4.3</span>
-                  <span class="us-title">Rechercher un tag</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF4.4</span>
-                  <span class="us-title"
-                    >Naviguer dans les pages de la liste des tags</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF5</span> Gestionnaire de modèles
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.1</span>
-                  <span class="us-title">Créer un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.2</span>
-                  <span class="us-title">Activer un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.3</span>
-                  <span class="us-title">Désactiver un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.4</span>
-                  <span class="us-title">Modifier un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.5</span>
-                  <span class="us-title">Supprimer un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.6</span>
-                  <span class="us-title">Exporter un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF5.7</span>
-                  <span class="us-title">Importer un modèle</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF6</span> Gestionnaire de types
-              personnalisés
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.1</span>
-                  <span class="us-title">Créer un type personnalisé</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.2</span>
-                  <span class="us-title">Modifier un type personnalisé</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.3</span>
-                  <span class="us-title">Supprimer un type personnalisé</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.4</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Ajouter un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.5</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Supprimer un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.6</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Déplacer un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.7</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Editer les propriétés d'un
-                    panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.8</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Ajouter une propriété à un
-                    panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.9</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Supprimer une propriété d'un
-                    panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.10</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Déplacer une propriété dans le
-                    même panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.11</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Déplacer une propriété d'un
-                    panneau à un autre</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF6.12</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Editer les propriétés d'une
-                    propriété d'un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF7</span> Gestionnaire d'aspects
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.1</span>
-                  <span class="us-title">Créer un aspect</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.2</span>
-                  <span class="us-title">Modifier un aspect</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.3</span>
-                  <span class="us-title">Supprimer un aspect</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.4</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Créer un propriété</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.5</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Ajouter un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.6</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Supprimer un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.7</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Déplacer un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.8</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Editer les propriétés d'un
-                    panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.9</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Ajouter une propriété à un
-                    panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.10</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Supprimer une propriété d'un
-                    panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.11</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Déplacer une propriété dans le
-                    même panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.12</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Déplacer une propriété d'un
-                    panneau à un autre</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF7.13</span>
-                  <span class="us-title"
-                    >Concepteur de disposition : Editer les propriétés d'une
-                    propriété d'un panneau</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF8</span> Gestionnaire de
-              propriétés
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF8.1</span>
-                  <span class="us-title">Créer une propriété</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF8.2</span>
-                  <span class="us-title">Modifier une propriété</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF8.3</span>
-                  <span class="us-title">Supprimer une propriété</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF9</span> Gestionnaire de sites
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF9.1</span>
-                  <span class="us-title">Supprimer un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF9.2</span>
-                  <span class="us-title">Devenir gestionnaire d'un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF9.3</span>
-                  <span class="us-title">Changer la visibilité d'un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF9.4</span>
-                  <span class="us-title"
-                    >Naviguer dans les pages de la liste des sites</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF9.5</span>
-                  <span class="us-title"
-                    >Accéder à la page Membres d'un site</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF10</span> Tâches de réplication
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF10.1</span>
-                  <span class="us-title">Créer une tâche de réplication</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF10.2</span>
-                  <span class="us-title"
-                    >Trier les tâches de réplication par critère</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF10.3</span>
-                  <span class="us-title"
-                    >Modifier une tâche de réplication</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF10.4</span>
-                  <span class="us-title"
-                    >Supprimer une tâche de réplication</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF11</span> Gestionnaire de
-              Groupes
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.1</span>
-                  <span class="us-title">Rechercher un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.2</span>
-                  <span class="us-title">Parcourir la liste des groupes</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.3</span>
-                  <span class="us-title">Créer un nouveau groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.4</span>
-                  <span class="us-title">Editer un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.5</span>
-                  <span class="us-title">Supprimer un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.6</span>
-                  <span class="us-title"
-                    >Ajouter un utilisateur à un groupe</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.7</span>
-                  <span class="us-title">Ajouter un groupe à un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.8</span>
-                  <span class="us-title"
-                    >Supprimer un utilisateur d'un groupe</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF11.9</span>
-                  <span class="us-title">Supprimer un groupe d'un groupe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ6.BF12</span> Gestionnaire
-              d'utilisateurs
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.1</span>
-                  <span class="us-title">Créer un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.2</span>
-                  <span class="us-title">Importer des utilisateurs</span>
-                </span>
-                <span class="complexity-tag">Complexité: 2</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.3</span>
-                  <span class="us-title">Rechercher un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.4</span>
-                  <span class="us-title">Editer un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.5</span>
-                  <span class="us-title">Supprimer un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.6</span>
-                  <span class="us-title">Désactiver un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.7</span>
-                  <span class="us-title">Activer un utilisateur</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.8</span>
-                  <span class="us-title"
-                    >Changer le mot de passe d'un utilisateur</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.9</span>
-                  <span class="us-title"
-                    >Ajouter un utilisateur à un groupe</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ6.BF12.10</span>
-                  <span class="us-title"
-                    >Supprimer un utilisateur d'un groupe</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-container expanded">
-        <h2 class="toggle-module-header">
-          <span class="icon">▼</span> RQ7 : Profil utilisateur
-        </h2>
-        <div class="module-content-wrapper">
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ7.BF1</span> Divers
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.1</span>
-                  <span class="us-title">Définir la page d'accueil</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.2</span>
-                  <span class="us-title"
-                    >Modifier le profil dans l'onglet Informations</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.3</span>
-                  <span class="us-title">Changer le mot de passe</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.4</span>
-                  <span class="us-title">Voir la liste de contenu</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.5</span>
-                  <span class="us-title"
-                    >Accéder à un élément de l'onglet contenu</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.6</span>
-                  <span class="us-title"
-                    >Activer/désactiver la notification par email</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.7</span>
-                  <span class="us-title">Voir la liste Suivis par moi</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF1.8</span>
-                  <span class="us-title">Voir la liste Me suit</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ7.BF2</span> Sites
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF2.1</span>
-                  <span class="us-title">Accéder à un site</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF2.2</span>
-                  <span class="us-title"
-                    >Activer les flux d'activités d'un site</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF2.3</span>
-                  <span class="us-title"
-                    >Désactiver les flux d'activités d'un site</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="epic-container expanded">
-            <h3 class="toggle-epic-header">
-              <span class="icon">▼</span>
-              <span class="epic-code-tag">RQ7.BF3</span> Corbeille
-            </h3>
-            <ul class="epic-content-list">
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF3.1</span>
-                  <span class="us-title">Rechercher dans la corbeille</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF3.2</span>
-                  <span class="us-title">Vider la corbeille</span>
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF3.3</span>
-                  <span class="us-title"
-                    >Supprimer définitivement un élément dans la corbeille</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF3.4</span>
-                  <span class="us-title"
-                    >Récupérer un élément de la corbeille</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF3.5</span>
-                  <span class="us-title"
-                    >Supprimer définitivement une sélection d'éléments dans la
-                    corbeille</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-              <li class="user-story">
-                <span class="us-details-group">
-                  <span class="us-code-tag">RQ7.BF3.6</span>
-                  <span class="us-title"
-                    >Récupérer une sélection d'éléments de la corbeille</span
-                  >
-                </span>
-                <span class="complexity-tag">Complexité: 1</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div class="legend">
+      <span><span class="chip basse"></span>Complexité Basse</span>
+      <span><span class="chip moyenne"></span>Complexité Moyenne</span>
+      <span><span class="chip elevee"></span>Complexité Élevée</span>
     </div>
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Recherche (code ou texte)"
+      />
+      <select id="complexityFilter" class="filter-select">
+        <option value="all">Toutes complexités</option>
+        <option value="Basse">Basse</option>
+        <option value="Moyenne">Moyenne</option>
+        <option value="Élevée">Élevée</option>
+      </select>
+    </div>
+
+    <div class="hierarchy-container" id="hierarchyContainer"></div>
+    <div
+      id="loadError"
+      class="hidden"
+      style="
+        color: #842029;
+        background: #f8d7da;
+        border: 1px solid #f5c2c7;
+        padding: 8px 10px;
+        border-radius: 4px;
+        margin-top: 10px;
+      "
+    ></div>
 
     <div class="admin-panel">
       <h3>Panneau Enseignant (Générateur)</h3>
@@ -3154,9 +629,9 @@
     <footer>
       <center>
         <p>
-          &copy; Talel Zid | Version 4.0 — Octobre 2025 | Basé sur
-          <a href="https://support.hyland.com/p/alfresco"
-            >https://support.hyland.com/p/alfresco</a
+          &copy; Talel Zid | Version 1.0 — Novembre 2024 |
+          <a href="https://www.redmine.org/" target="_blank"
+            >Redmine Project Management</a
           >
           | <br />Pour usage personnel ou éducatif seulement.
         </p>
@@ -3164,48 +639,222 @@
     </footer>
 
     <script>
-      // ==========================================================
-      // === FONCTIONS DE NAVIGATION (Originales - DOIVENT RESTER) ===
-      // ==========================================================
+      const CSV_URL = "../../docs/csv/RepartitionRedmine.csv";
 
-      /** Réduit tous les Epics, laissant les Modules ouverts. */
-      function collapseAllEpics() {
-        document.querySelectorAll(".epic-container").forEach((epic) => {
-          epic.classList.add("collapsed");
-        });
-        document.querySelectorAll(".module-container").forEach((module) => {
-          module.classList.remove("collapsed");
-        });
+      // Lecture du CSV puis rendu intégral depuis la source unique
+      async function loadAndRender() {
+        try {
+          const res = await fetch(CSV_URL, { cache: "no-store" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const text = await res.text();
+          const rows = parseCSV(text);
+          render(rows);
+          applyFilters();
+        } catch (err) {
+          const box = document.getElementById("loadError");
+          box.textContent = `Erreur de chargement du CSV (${CSV_URL}) : ${err.message}. Si vous ouvrez le fichier en file://, utilisez un serveur local.`;
+          box.classList.remove("hidden");
+        }
       }
 
-      /** Réduit tous les Modules, masquant tout le contenu. */
-      function collapseAllModules() {
-        document
-          .querySelectorAll(".module-container, .epic-container")
-          .forEach((item) => {
-            item.classList.add("collapsed");
+      // Parseur simple CSV à séparateur ';' (attendu par le fichier)
+      function parseCSV(text) {
+        const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
+        const rows = [];
+        for (let i = 0; i < lines.length; i++) {
+          const cols = lines[i]
+            .split(";")
+            .map((c) => c.replace(/\r/g, "").trim());
+          if (i === 0) continue; // sauter l'en-tête
+          if (cols.length < 6) continue; // ignorer lignes incomplètes
+          const [mCode, mName, eCode, eName, usCode, usTitle] = cols;
+          const rawComplexity = cols[6] || "";
+          rows.push([
+            mCode,
+            mName,
+            eCode,
+            eName,
+            usCode,
+            usTitle,
+            normalizeComplexity(rawComplexity),
+          ]);
+        }
+        return rows;
+      }
+
+      // --- Groupement hiérarchique ---
+      function buildHierarchy(rows) {
+        const modules = new Map();
+        rows.forEach(([mCode, mName, eCode, eName, usCode, usTitle, comp]) => {
+          if (!modules.has(mCode))
+            modules.set(mCode, {
+              code: mCode,
+              name: mName,
+              epics: new Map(),
+            });
+          const mod = modules.get(mCode);
+          if (!mod.epics.has(eCode))
+            mod.epics.set(eCode, {
+              code: eCode,
+              name: eName,
+              stories: [],
+            });
+          mod.epics.get(eCode).stories.push({
+            code: usCode,
+            title: usTitle,
+            complexity: comp,
           });
+        });
+        return Array.from(modules.values()).map((m) => ({
+          ...m,
+          epics: Array.from(m.epics.values()),
+        }));
       }
 
-      /** Déploie tous les Modules et tous les Epics, montrant toutes les user stories. */
+      function normalizeComplexity(raw) {
+        const l = (raw || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "");
+        if (l.includes("elevee") || l.includes("elev") || l.includes("lev"))
+          return "Élevée";
+        if (l.includes("moy")) return "Moyenne";
+        return "Basse";
+      }
+
+      function complexityClass(label) {
+        const l = (label || "").toLowerCase();
+        if (l.includes("lev")) return "c-elevee";
+        if (l.startsWith("m")) return "c-moyenne";
+        return "c-basse";
+      }
+
+      function render(rows) {
+        const container = document.getElementById("hierarchyContainer");
+        container.innerHTML = "";
+        const data = buildHierarchy(rows);
+        data.forEach((module) => {
+          const modDiv = document.createElement("div");
+          modDiv.className = "module-container expanded";
+          modDiv.innerHTML = `<h2 class="toggle-module-header"><span class="icon">▼</span>${module.code} : ${module.name}</h2><div class="module-content-wrapper"></div>`;
+          const wrapper = modDiv.querySelector(".module-content-wrapper");
+          module.epics.forEach((epic) => {
+            const epicDiv = document.createElement("div");
+            epicDiv.className = "epic-container expanded";
+            epicDiv.innerHTML = `<h3 class="toggle-epic-header"><span class="icon">▼</span><span class="epic-code-tag">${epic.code}</span>${epic.name}</h3><ul class="epic-content-list"></ul>`;
+            const list = epicDiv.querySelector("ul");
+            epic.stories.forEach((story) => {
+              const li = document.createElement("li");
+              li.className = "user-story";
+              li.dataset.module = module.code;
+              li.dataset.epic = epic.code;
+              li.dataset.complexity = story.complexity;
+              li.innerHTML = `<div class="us-details-group"><span class="us-code-tag">${
+                story.code
+              }</span><span class="us-title">${
+                story.title
+              }</span></div><span class="complexity-tag ${complexityClass(
+                story.complexity
+              )}">${story.complexity}</span>`;
+              list.appendChild(li);
+            });
+            wrapper.appendChild(epicDiv);
+          });
+          container.appendChild(modDiv);
+        });
+        attachToggleHandlers();
+      }
+
+      function attachToggleHandlers() {
+        document.querySelectorAll(".toggle-module-header").forEach((h) => {
+          h.onclick = () => h.parentElement.classList.toggle("collapsed");
+        });
+        document.querySelectorAll(".toggle-epic-header").forEach((h) => {
+          h.onclick = () => h.parentElement.classList.toggle("collapsed");
+        });
+      }
+
       function expandAll() {
         document
           .querySelectorAll(".module-container, .epic-container")
-          .forEach((item) => {
-            item.classList.remove("collapsed");
-          });
+          .forEach((e) => e.classList.remove("collapsed"));
+      }
+      function collapseAllModules() {
+        document
+          .querySelectorAll(".module-container")
+          .forEach((e) => e.classList.add("collapsed"));
+      }
+      function collapseAllEpics() {
+        document
+          .querySelectorAll(".epic-container")
+          .forEach((e) => e.classList.add("collapsed"));
+        document
+          .querySelectorAll(".module-container")
+          .forEach((e) => e.classList.remove("collapsed"));
       }
 
+      // --- Recherche & Filtre complexité ---
+      function applyFilters() {
+        const q = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        const comp = document.getElementById("complexityFilter").value;
+        const stories = document.querySelectorAll(".user-story");
+        stories.forEach((story) => {
+          const text = (story.textContent || "").toLowerCase();
+          const matchesQ = !q || text.includes(q);
+          const matchesC = comp === "all" || story.dataset.complexity === comp;
+          story.classList.toggle("hidden", !(matchesQ && matchesC));
+        });
+        // Masquer epics ou modules vides
+        document.querySelectorAll(".epic-container").forEach((ep) => {
+          const hasVisible =
+            ep.querySelectorAll(".user-story:not(.hidden)").length > 0;
+          ep.classList.toggle("hidden", !hasVisible);
+        });
+        document.querySelectorAll(".module-container").forEach((mod) => {
+          const hasVisible =
+            mod.querySelectorAll(".user-story:not(.hidden)").length > 0;
+          mod.classList.toggle("hidden", !hasVisible);
+        });
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", applyFilters);
+      document
+        .getElementById("complexityFilter")
+        .addEventListener("change", applyFilters);
+
       // ==========================================================
-      // === FONCTIONS UTILITAIRES ET D'INJECTION (GÉNÉRATEUR) ===
+      // === FONCTIONS DU GÉNÉRATEUR (PANNEAU ENSEIGNANT) ===
       // ==========================================================
 
-      /** Injecte le CSS nécessaire dans le <head> du document cloné. */
+      /** Détermine le libellé standard de complexité: Basse | Moyenne | Élevée */
+      function complexityToLabel(complexityText) {
+        const l = (complexityText || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "");
+        if (l.includes("elevee") || l.includes("elev")) return "Élevée";
+        if (l.includes("moy")) return "Moyenne";
+        return "Basse";
+      }
+
+      /** Poids pour la charge: Basse=1, Moyenne=2, Élevée=3 */
+      function complexityWeight(label) {
+        const l = (label || "").toLowerCase();
+        if (l.includes("lev")) return 3;
+        if (l.startsWith("m")) return 2;
+        return 1;
+      }
+
+      /** Injecte le CSS nécessaire dans le <head> du document cloné */
       function injectCSS(doc) {
         const style = document.createElement("style");
         style.type = "text/css";
         style.innerHTML = `
-            /* CSS pour les tags d'équipe générés */
             .team-tag {
                 font-weight: bold;
                 padding: 4px 10px;
@@ -3217,7 +866,6 @@
                 flex-shrink: 0;
             }
             
-            /* --- Styles de la Barre de Filtres Unifiée --- */
             .filters-bar {
                 margin-bottom: 20px;
                 padding: 10px;
@@ -3262,79 +910,11 @@
                 min-width: 130px;
             }
 
-            /* Classes pour masquer les US filtrées et les éléments de recherche */
             .user-story.hidden-by-filter,
             .user-story.hidden-by-search {
                 display: none;
             }
             
-            /* --- Styles Glossaire --- */
-            #open-glossary-btn {
-                background-color: #20c997; 
-                color: white;
-                font-weight: bold;
-                margin-right: 10px; 
-            }
-            
-            .glossary-modal {
-                display: none; 
-                position: fixed; 
-                z-index: 100; 
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto; 
-                background-color: rgba(0,0,0,0.4); 
-            }
-
-            .modal-content {
-                background-color: #fefefe;
-                margin: 5% auto; 
-                padding: 30px;
-                border: 1px solid #888;
-                width: 80%; 
-                max-width: 800px;
-                border-radius: 8px;
-                position: relative;
-                max-height: 90vh;
-                overflow-y: auto;
-            }
-            
-            .close-btn {
-                color: #aaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-                margin-left: 20px;
-            }
-
-            .close-btn:hover, .close-btn:focus {
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
-            }
-            
-            .modal-content h2 {
-                border-bottom: 2px solid #ccc;
-                padding-bottom: 10px;
-                margin-top: 0;
-            }
-            
-            .glossary-list dt {
-                font-weight: bold;
-                font-size: 1.1em;
-                margin-top: 15px;
-                color: #007bff;
-            }
-            .glossary-list dd {
-                margin-left: 0;
-                padding-left: 10px;
-                border-left: 3px solid #eee;
-            }
-            
-
-            /* --- STYLES STATS --- */
             .stats-container {
                 margin-bottom: 30px;
                 background-color: #ffffff;
@@ -3381,7 +961,6 @@
                 content: '▼'; 
             }
             
-            /* Grille principale (Modules, Epics, US) */
             .stats-grid {
                 display: flex;
                 justify-content: space-around;
@@ -3403,7 +982,6 @@
             .epic-color { background-color: #17a2b8; }
             .us-color { background-color: #28a745; }
             
-            /* --- NOUVEAUX STYLES POUR L'OPTIMISATION DES STATS --- */
             .stats-grid-teams {
                 display: flex;
                 flex-wrap: wrap;
@@ -3412,7 +990,7 @@
                 justify-content: flex-start;
             }
             
-            .team-card, .complexity-card {
+            .team-card {
                 padding: 12px 15px;
                 border-radius: 5px;
                 min-width: 150px;
@@ -3432,14 +1010,23 @@
                 line-height: 1;
             }
             
-            /* Styles Complexité - Cartes sur une seule ligne */
             .complexity-summary-cards {
                 display: flex;
                 gap: 15px;
                 margin-bottom: 20px;
             }
-            .complexity-card.c1 { background-color: #20c997; } /* Vert clair */
-            .complexity-card.c2 { background-color: #fd7e14; } /* Orange */
+            .complexity-card {
+                padding: 12px 15px;
+                border-radius: 5px;
+                min-width: 150px;
+                flex-grow: 1;
+                text-align: center;
+                color: white;
+                font-weight: bold;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .complexity-card.c1 { background-color: #20c997; }
+            .complexity-card.c2 { background-color: #fd7e14; }
             
             .complexity-card-value {
                 font-size: 1.4em;
@@ -3451,17 +1038,6 @@
                 opacity: 0.9;
             }
             
-            /* ... (autres styles inchangés) ... */
-            
-            .controls input[type="text"] {
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                width: 300px;
-                margin-right: 15px;
-            }
-            
-            /* Classes pour masquer les conteneurs non correspondants */
             .module-container.hidden-by-search,
             .epic-container.hidden-by-search {
                 display: none;
@@ -3470,7 +1046,7 @@
         doc.head.appendChild(style);
       }
 
-      /** Injecte les statistiques dans le document cloné. */
+      /** Injecte les statistiques dans le document cloné */
       function injectStatsHTML(doc, stats, getStatsHTML) {
         const controlsDiv = doc.querySelector(".controls");
         if (!controlsDiv) return;
@@ -3478,28 +1054,14 @@
         const statsContainer = document.createElement("div");
         statsContainer.className = "stats-container";
         statsContainer.classList.add("collapsed");
-
         statsContainer.innerHTML = getStatsHTML(stats);
-
         controlsDiv.insertAdjacentElement("afterend", statsContainer);
       }
 
-      /** Injecte les filtres (équipe, complexité en select) et la barre de recherche. */
+      /** Injecte les filtres (équipe, complexité) */
       function injectFiltersHTML(doc, numTeams) {
         const statsContainer = doc.querySelector(".stats-container");
         if (!statsContainer) return;
-
-        const searchInput = document.createElement("input");
-        searchInput.type = "text";
-        searchInput.id = "global-search-input";
-        searchInput.placeholder = "Recherche (Module, Epic, US)";
-        const controlsDiv = doc.querySelector(".controls");
-        controlsDiv.prepend(searchInput);
-
-        const glossaryBtn = document.createElement("button");
-        glossaryBtn.id = "open-glossary-btn";
-        glossaryBtn.textContent = "Glossaire 📖";
-        controlsDiv.appendChild(glossaryBtn);
 
         const filtersBar = document.createElement("div");
         filtersBar.className = "filters-bar";
@@ -3513,110 +1075,24 @@
 
         html += '<strong style="margin-left: 20px;">Complexité :</strong> ';
         html += `
-            <select id="complexity-select-filter">
-                <option value="all">Tout</option>
-                <option value="1">Complexité 1</option>
-                <option value="2">Complexité 2</option>
-            </select>
-        `;
+      <select id="complexity-select-filter">
+        <option value="all">Tout</option>
+        <option value="Basse">Basse</option>
+        <option value="Moyenne">Moyenne</option>
+        <option value="Élevée">Élevée</option>
+      </select>
+    `;
 
         html += `<button id="export-csv-btn">Exporter en CSV</button>`;
-
         filtersBar.innerHTML = html;
         statsContainer.insertAdjacentElement("afterend", filtersBar);
-
-        const modalHtml = `
-            <div id="glossary-modal" class="glossary-modal">
-              <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Glossaire des Termes du Projet</h2>
-                <dl class="glossary-list"></dl>
-              </div>
-            </div>
-        `;
-        doc.body.insertAdjacentHTML("beforeend", modalHtml);
       }
 
-      /** Injecte les fonctions de filtrage, de recherche et le glossaire. */
+      /** Injecte les fonctions de filtrage et d'export CSV */
       function injectFiltersJS(doc) {
         const newScript = document.createElement("script");
 
         const filterAndExportCode = `
-            
-            // --- DÉBUT DU CODE INJECTÉ PAR LE GÉNÉRATEUR (FILTRES, RECHERCHE, GLOSSAIRE) ---
-
-            const GLOSSARY_TERMS = {
-                "User Story (US)": "Description courte et orientée utilisateur d'une fonctionnalité. L'unité de travail la plus petite de cette matrice.",
-                "Epic": "Un ensemble de User Stories liées qui partagent un objectif commun de haut niveau. Un Epic est toujours inclus dans un Module.",
-                "Module": "Un regroupement de fonctionnalités ou d'Epics liés à une grande partie du produit (ex: Gestion des Utilisateurs, Paiement). Le plus haut niveau d'organisation de cette matrice.",
-                "Complexité 1": "User Story simple et rapide à réaliser (quelques heures, max une journée). Faible risque et portée limitée.",
-                "Complexité 2": "User Story de taille moyenne, nécessitant potentiellement plus d'une journée de travail ou impliquant une intégration/logique complexe.",
-                "Répartition": "L'attribution aléatoire des User Stories aux différentes équipes pour équilibrer la charge de travail (basée sur la complexité)."
-            };
-            
-            /** Crée et affiche la modale du glossaire */
-            function createAndShowGlossaryModal() {
-                const modal = document.getElementById('glossary-modal');
-                const listContainer = modal.querySelector('.glossary-list');
-                listContainer.innerHTML = ''; 
-
-                for (const term in GLOSSARY_TERMS) {
-                    const dt = document.createElement('dt');
-                    dt.textContent = term;
-                    const dd = document.createElement('dd');
-                    dd.textContent = GLOSSARY_TERMS[term];
-                    listContainer.appendChild(dt);
-                    listContainer.appendChild(dd);
-                }
-                
-                modal.style.display = "block";
-            }
-            
-            /** Cache la modale du glossaire */
-            function hideGlossaryModal() {
-                document.getElementById('glossary-modal').style.display = "none";
-            }
-
-            /** Gère les séparateurs '|' ou ':' pour Module/Epic */
-            const extractCodeAndName = (headerText) => {
-                const cleanText = headerText.replace(/[\u25BC\u25B6]/g, '').trim();
-                let parts = cleanText.split('|');
-                if (parts.length >= 2) {
-                    const code = parts[0].trim();
-                    const name = parts.slice(1).join('|').trim();
-                    return [code, name];
-                }
-                parts = cleanText.split(':');
-                if (parts.length >= 2 && parts[0].trim().length > 0) {
-                    const code = parts[0].trim();
-                    const name = parts.slice(1).join(':').trim();
-                    return [code, name];
-                }
-                return ['', cleanText]; 
-            };
-
-            /** Tente d'extraire Code et Nom pour Epic/Module. */
-            const extractEpicAndModuleData = (container, headerSelector, codeTagClass) => {
-                const headerElement = container.querySelector(headerSelector);
-                if (!headerElement) return ['', ''];
-                const codeTag = headerElement.querySelector('.' + codeTagClass);
-                
-                if (codeTag) {
-                    const code = codeTag.textContent.trim();
-                    const fullText = headerElement.textContent;
-                    let name = fullText.replace(code, '').replace(/[\u25BC\u25B6]/g, '').trim();
-                    if (name.startsWith(':')) name = name.substring(1).trim();
-                    if (name.startsWith('|')) name = name.substring(1).trim();
-                    return [code, name];
-                } else {
-                    return extractCodeAndName(headerElement.textContent);
-                }
-            };
-
-            
-            /** * Applique les filtres d'équipe et de complexité simultanément.
-             * @param {boolean} silent - Si true, ne scroll pas.
-             */
             function applyCombinedFilters(silent = false) {
                 const stories = document.querySelectorAll('.user-story');
                 
@@ -3627,160 +1103,26 @@
                 const complexityFilter = complexitySelect ? complexitySelect.value : 'all';
 
                 stories.forEach(story => {
-                    const storyTeam = story.dataset.team || 'N/A';
-                    const storyComplexity = story.dataset.complexity || 'N/A'; 
-
-                    const teamMatch = (teamFilter === 'all' || storyTeam === String(teamFilter));
-                    const complexityMatch = (complexityFilter === 'all' || storyComplexity === String(complexityFilter));
-
-                    if (teamMatch && complexityMatch) {
-                        story.classList.remove('hidden-by-filter');
-                    } else {
-                        story.classList.add('hidden-by-filter');
-                    }
+                    const teamMatch = teamFilter === 'all' || story.dataset.team === teamFilter;
+                    const complexityMatch = complexityFilter === 'all' || story.dataset.complexity === complexityFilter;
+                    story.classList.toggle('hidden-by-filter', !(teamMatch && complexityMatch));
+                });
+                
+                document.querySelectorAll('.epic-container').forEach(ep => {
+                    const hasVisible = ep.querySelectorAll('.user-story:not(.hidden-by-filter)').length > 0;
+                    ep.classList.toggle('hidden-by-filter', !hasVisible);
+                });
+                document.querySelectorAll('.module-container').forEach(mod => {
+                    const hasVisible = mod.querySelectorAll('.user-story:not(.hidden-by-filter)').length > 0;
+                    mod.classList.toggle('hidden-by-filter', !hasVisible);
                 });
                 
                 if (!silent) {
-                    window.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
 
-
-            /** Fonction de recherche globale (CORRIGÉE ET SIMPLIFIÉE) */
-            function globalSearch() {
-                const query = document.getElementById('global-search-input').value.toLowerCase().trim();
-                const stories = document.querySelectorAll('.user-story');
-                const epics = document.querySelectorAll('.epic-container');
-                const modules = document.querySelectorAll('.module-container');
-
-                // Sets pour remonter la visibilité
-                const matchingEpics = new Set();
-                const matchingModules = new Set();
-                
-                const activeTeamBtnId = document.querySelector('.filters-bar button[id^="filter-btn-team-"].active')?.id || 'filter-btn-team-all';
-                const complexitySelect = document.getElementById('complexity-select-filter');
-                const activeComplexityValue = complexitySelect ? complexitySelect.value : 'all';
-
-                // Si la recherche est vide, on arrête et on réapplique les filtres
-                if (query === '') {
-                    stories.forEach(story => story.classList.remove('hidden-by-search'));
-                    epics.forEach(epic => epic.classList.remove('hidden-by-search'));
-                    modules.forEach(module => module.classList.remove('hidden-by-search'));
-                    
-                    document.querySelectorAll('.filters-bar button[id^="filter-btn-team-"]').forEach(b => b.classList.remove('active'));
-                    document.getElementById(activeTeamBtnId)?.classList.add('active');
-                    
-                    if (complexitySelect) complexitySelect.value = activeComplexityValue;
-                    applyCombinedFilters(true);
-                    return;
-                }
-
-                // 1. Traitement des US : masquage de base et remontée des parents
-                stories.forEach(story => {
-                    const storyText = story.textContent.toLowerCase();
-                    const matches = storyText.includes(query);
-                    
-                    if (matches) {
-                        story.classList.remove('hidden-by-search');
-                        
-                        const epicContainer = story.closest('.epic-container');
-                        const moduleContainer = story.closest('.module-container');
-                        if (epicContainer) matchingEpics.add(epicContainer);
-                        if (moduleContainer) matchingModules.add(moduleContainer);
-                        
-                    } else {
-                        story.classList.add('hidden-by-search');
-                        // On supprime également le masquage des filtres pour éviter un conflit visuel
-                        story.classList.remove('hidden-by-filter');
-                    }
-                });
-
-                // 2. Traitement des Epics
-                epics.forEach(epic => {
-                    const epicHeader = epic.querySelector('.toggle-epic-header').textContent.toLowerCase();
-                    const matchesHeader = epicHeader.includes(query);
-                    
-                    if (matchesHeader || matchingEpics.has(epic)) {
-                        epic.classList.remove('hidden-by-search');
-                        epic.classList.remove('collapsed'); // Déplier le conteneur
-                        
-                        // Si le titre de l'Epic correspond, on s'assure que TOUTES ses US sont visibles
-                        // pour montrer le contexte complet de la recherche.
-                        if (matchesHeader) {
-                            epic.querySelectorAll('.user-story').forEach(story => {
-                                story.classList.remove('hidden-by-search');
-                            });
-                        }
-                        
-                        // Remonter la visibilité au Module parent
-                        const moduleContainer = epic.closest('.module-container');
-                        if (moduleContainer) matchingModules.add(moduleContainer);
-                        
-                    } else {
-                        epic.classList.add('hidden-by-search');
-                    }
-                });
-
-                // 3. Traitement des Modules
-                modules.forEach(module => {
-                    const moduleHeader = module.querySelector('.toggle-module-header').textContent.toLowerCase();
-                    const matchesHeader = moduleHeader.includes(query);
-
-                    if (matchesHeader || matchingModules.has(module)) {
-                        module.classList.remove('hidden-by-search');
-                        module.classList.remove('collapsed'); // Déplier le conteneur
-
-                        // Si le titre du Module correspond, on s'assure que TOUS ses descendants sont visibles
-                        if (matchesHeader) {
-                            module.querySelectorAll('.epic-container, .user-story').forEach(item => {
-                                item.classList.remove('hidden-by-search');
-                                item.classList.remove('collapsed');
-                            });
-                        }
-                        
-                    } else {
-                        module.classList.add('hidden-by-search');
-                    }
-                });
-
-                // 4. Désactiver les filtres lorsque la recherche est active
-                stories.forEach(story => story.classList.remove('hidden-by-filter'));
-            }
-
-
-            /** Attache les écouteurs d'événements aux Toggles, Filtres et au Glossaire DANS LE FICHIER GÉNÉRÉ. */
             function attachFilterListeners() {
-                // 1. Boutons de contrôle global
-                const map = {
-                    'expand-all-btn': expandAll,
-                    'collapse-epics-btn': collapseAllEpics,
-                    'collapse-modules-btn': collapseAllModules
-                };
-
-                Object.keys(map).forEach(id => {
-                    const btn = document.getElementById(id);
-                    if (btn) {
-                        btn.addEventListener('click', map[id]);
-                    }
-                });
-
-                // 2. Toggles individuels des Modules/Epics/Stats
-                document.querySelectorAll('.toggle-module-header, .toggle-epic-header').forEach(header => {
-                    header.addEventListener('click', () => {
-                        header.closest(header.classList.contains('toggle-module-header') ? '.module-container' : '.epic-container').classList.toggle('collapsed');
-                    });
-                });
-                
-                document.querySelector('.stats-container .stats-header')?.addEventListener('click', (event) => {
-                    event.currentTarget.closest('.stats-container').classList.toggle('collapsed');
-                });
-                
-                // 3. Écouteur de la barre de recherche
-                document.getElementById('global-search-input')?.addEventListener('keyup', globalSearch);
-                document.getElementById('global-search-input')?.addEventListener('change', globalSearch);
-
-                
-                // 4. Écouteurs des filtres d'équipe
                 const teamButtons = document.querySelectorAll('.filters-bar button[id^="filter-btn-team-"]:not(#export-csv-btn)');
                 teamButtons.forEach(btn => {
                     btn.addEventListener('click', () => {
@@ -3790,37 +1132,32 @@
                     });
                 });
                 
-                // 5. Écouteurs du filtre de complexité (SELECT)
                 document.getElementById('complexity-select-filter')?.addEventListener('change', applyCombinedFilters);
 
-                
-                // 6. Écouteurs du GLOSSAIRE
-                document.getElementById('open-glossary-btn')?.addEventListener('click', createAndShowGlossaryModal);
-                document.querySelector('.glossary-modal .close-btn')?.addEventListener('click', hideGlossaryModal);
-                
-                window.addEventListener('click', (event) => {
-                    if (event.target === document.getElementById('glossary-modal')) {
-                        hideGlossaryModal();
-                    }
+                document.querySelector('.stats-container .stats-header')?.addEventListener('click', (event) => {
+                    event.currentTarget.closest('.stats-container').classList.toggle('collapsed');
                 });
 
-
-                // 7. Écouteur du bouton CSV
                 const csvBtn = document.getElementById('export-csv-btn');
                 if(csvBtn) {
                     csvBtn.addEventListener('click', exportToCSV);
                 }
+
+                document.querySelectorAll('.toggle-module-header').forEach(h => {
+                    h.onclick = () => h.parentElement.classList.toggle('collapsed');
+                });
+                document.querySelectorAll('.toggle-epic-header').forEach(h => {
+                    h.onclick = () => h.parentElement.classList.toggle('collapsed');
+                });
             }
 
-
-            /** Fonction pour exporter les User Stories visibles au format CSV. */
             function exportToCSV() {
-                let csv = "Code module;Module;Code Epic;Epic;Code US;US;Équipe\\r\\n";
+                let csv = "Code module;Module;Code Epic;Epic;Code US;US;Équipe;Complexité\\r\\n";
                 
-                const visibleStories = document.querySelectorAll('.user-story:not(.hidden-by-filter):not(.hidden-by-search)');
+                const visibleStories = document.querySelectorAll('.user-story:not(.hidden-by-filter)');
 
                 if (visibleStories.length === 0) {
-                    alert("Aucune User Story visible à exporter. Veuillez vérifier les filtres appliqués.");
+                    alert("Aucune User Story visible à exporter.");
                     return;
                 }
                 
@@ -3829,37 +1166,23 @@
                     
                     const moduleContainer = story.closest('.module-container');
                     const moduleHeader = moduleContainer ? moduleContainer.querySelector('.toggle-module-header').textContent : '';
-                    const [moduleCode, moduleName] = extractCodeAndName(moduleHeader); 
+                    const moduleMatch = moduleHeader.match(/([A-Z]+\\d+)\\s*:\\s*(.+)/);
+                    const moduleCode = moduleMatch ? moduleMatch[1].trim() : '';
+                    const moduleName = moduleMatch ? moduleMatch[2].trim() : '';
                     
                     const epicContainer = story.closest('.epic-container');
-                    const [epicCode, epicName] = extractEpicAndModuleData(
-                        epicContainer, 
-                        '.toggle-epic-header', 
-                        'epic-code-tag'
-                    );
+                    const epicCodeTag = epicContainer ? epicContainer.querySelector('.epic-code-tag') : null;
+                    const epicHeader = epicContainer ? epicContainer.querySelector('.toggle-epic-header') : null;
+                    const epicCode = epicCodeTag ? epicCodeTag.textContent.trim() : '';
+                    const epicName = epicHeader ? epicHeader.textContent.replace(epicCode, '').replace(/[▼►]/g, '').trim() : '';
                     
-                    let usCode = '';
-                    let usDescription = '';
-
                     const usCodeTag = story.querySelector('.us-code-tag');
                     const usTitleTag = story.querySelector('.us-title');
-
-                    if (usCodeTag && usTitleTag) {
-                        usCode = usCodeTag.textContent.trim();
-                        usDescription = usTitleTag.textContent.trim();
-                    } else {
-                        const usContent = Array.from(story.childNodes)
-                            .filter(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0)
-                            .map(node => node.textContent.trim())
-                            .join(' ');
-                        
-                        const usContentTrimmed = usContent.trim();
-                        const usCodeMatch = usContentTrimmed.match(/^(\\S+)/); 
-                        usCode = usCodeMatch ? usCodeMatch[1] : '';
-                        usDescription = usContentTrimmed.substring(usCode.length).trim();
-                    }
+                    const usCode = usCodeTag ? usCodeTag.textContent.trim() : '';
+                    const usDescription = usTitleTag ? usTitleTag.textContent.trim() : '';
                     
                     const teamNumber = story.dataset.team || 'N/A';
+                    const complexity = story.dataset.complexity || '';
                     
                     const line = [
                         cleanText(moduleCode),
@@ -3868,7 +1191,8 @@
                         cleanText(epicName),
                         cleanText(usCode),
                         cleanText(usDescription),
-                        cleanText('Équipe ' + teamNumber)
+                        'Équipe ' + teamNumber,
+                        'Complexité ' + complexity
                     ].join(';');
                     
                     csv += line + "\\r\\n";
@@ -3891,16 +1215,14 @@
                 }
             }
             
-            attachFilterListeners(); 
-            
-            // --- FIN DU CODE INJECTÉ ---
+            attachFilterListeners();
         `;
 
         newScript.textContent = filterAndExportCode;
         doc.body.appendChild(newScript);
       }
 
-      /** Fonction principale pour générer le fichier de répartition. */
+      /** Fonction principale pour générer le fichier de répartition */
       async function generateAndDownload() {
         const numTeams = parseInt(
           document.getElementById("team-count-select").value,
@@ -3920,24 +1242,27 @@
           newDoc.querySelectorAll(".module-container").length;
         const totalEpics = newDoc.querySelectorAll(".epic-container").length;
 
-        const storiesByComplexity = { 1: [], 2: [] };
-        let complexity1Count = 0;
-        let complexity2Count = 0;
+        const storiesByComplexity = { Basse: [], Moyenne: [], Élevée: [] };
+        let complexityBasseCount = 0;
+        let complexityMoyenneCount = 0;
+        let complexityEleveeCount = 0;
 
         allStories.forEach((story) => {
           const complexityTag = story.querySelector(".complexity-tag");
           if (complexityTag) {
             const complexityText = complexityTag.textContent;
-            const complexity = parseInt(complexityText.split(": ")[1], 10);
-            if (complexity === 1) {
-              storiesByComplexity[1].push(story);
-              complexity1Count++;
-              story.dataset.complexity = 1;
-            } else if (complexity === 2) {
-              storiesByComplexity[2].push(story);
-              complexity2Count++;
-              story.dataset.complexity = 2;
+            const label = complexityToLabel(complexityText);
+            if (label === "Basse") {
+              storiesByComplexity.Basse.push(story);
+              complexityBasseCount++;
+            } else if (label === "Moyenne") {
+              storiesByComplexity.Moyenne.push(story);
+              complexityMoyenneCount++;
+            } else {
+              storiesByComplexity["Élevée"].push(story);
+              complexityEleveeCount++;
             }
+            story.dataset.complexity = label;
           }
         });
 
@@ -3960,7 +1285,6 @@
 
           stories.forEach((story, index) => {
             const teamNumber = (index % numTeams) + 1;
-
             story.dataset.team = teamNumber;
 
             const teamTag = document.createElement("span");
@@ -3973,16 +1297,27 @@
           });
         };
 
-        distributeAndCalculate(storiesByComplexity[1], 1);
-        distributeAndCalculate(storiesByComplexity[2], 2);
+        distributeAndCalculate(
+          storiesByComplexity.Basse,
+          complexityWeight("Basse")
+        );
+        distributeAndCalculate(
+          storiesByComplexity.Moyenne,
+          complexityWeight("Moyenne")
+        );
+        distributeAndCalculate(
+          storiesByComplexity["Élevée"],
+          complexityWeight("Élevée")
+        );
 
         // 3. ENCAPSULATION ET GÉNÉRATION DES STATS HTML
         const stats = {
           totalStories,
           totalModules,
           totalEpics,
-          complexity1Count,
-          complexity2Count,
+          complexityBasseCount,
+          complexityMoyenneCount,
+          complexityEleveeCount,
           teamWorkload,
           numTeams,
         };
@@ -4014,19 +1349,28 @@
                 <div class="complexity-summary-cards">
                     <div class="complexity-card c1">
                         <div class="complexity-card-value">${
-                          stats.complexity1Count
+                          stats.complexityBasseCount
                         } US</div>
-                        <div class="complexity-card-label">Complexité 1 (${(
-                          (stats.complexity1Count / stats.totalStories) *
+                        <div class="complexity-card-label">Basse (${(
+                          (stats.complexityBasseCount / stats.totalStories) *
                           100
                         ).toFixed(1)}%)</div>
                     </div>
                     <div class="complexity-card c2">
                         <div class="complexity-card-value">${
-                          stats.complexity2Count
+                          stats.complexityMoyenneCount
                         } US</div>
-                        <div class="complexity-card-label">Complexité 2 (${(
-                          (stats.complexity2Count / stats.totalStories) *
+                        <div class="complexity-card-label">Moyenne (${(
+                          (stats.complexityMoyenneCount / stats.totalStories) *
+                          100
+                        ).toFixed(1)}%)</div>
+                    </div>
+                    <div class="complexity-card" style="background-color:#dc3545;">
+                        <div class="complexity-card-value">${
+                          stats.complexityEleveeCount
+                        } US</div>
+                        <div class="complexity-card-label">Élevée (${(
+                          (stats.complexityEleveeCount / stats.totalStories) *
                           100
                         ).toFixed(1)}%)</div>
                     </div>
@@ -4037,7 +1381,6 @@
 
           for (let i = 1; i <= stats.numTeams; i++) {
             const wl = stats.teamWorkload[i];
-            // Calculer une couleur dynamique pour chaque équipe
             const dynamicColor = `hsl(${(i * 360) / stats.numTeams}, 70%, 50%)`;
 
             html += `
@@ -4060,73 +1403,44 @@
         injectFiltersHTML(newDoc, numTeams);
         injectFiltersJS(newDoc);
 
-        // Retrait du panneau admin
+        // Retrait du panneau admin et de la barre de recherche originale
         const adminPanel = newDoc.querySelector(".admin-panel");
         if (adminPanel) {
           adminPanel.remove();
         }
-
-        // On assure la réinjection des fonctions de navigation *en tant que code global*
-        const originalScript = newDoc.querySelector("body > script");
-        if (originalScript) {
-          originalScript.textContent = `
-                function collapseAllEpics() { ${
-                  collapseAllEpics.toString().match(/{([\s\S]*)}/)[1]
-                } }
-                function collapseAllModules() { ${
-                  collapseAllModules.toString().match(/{([\s\S]*)}/)[1]
-                } }
-                function expandAll() { ${
-                  expandAll.toString().match(/{([\s\S]*)}/)[1]
-                } }
-             `;
+        const searchBar = newDoc.querySelector(".search-bar");
+        if (searchBar) {
+          searchBar.remove();
         }
 
         // Sérialisation et téléchargement
-        const finalHtml = newDoc.documentElement.outerHTML;
+        const finalHtml =
+          "<!DOCTYPE html>\n" + newDoc.documentElement.outerHTML;
         const blob = new Blob([finalHtml], { type: "text/html;charset=utf-8" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = `features_${numTeams}_equipes.html`;
         link.click();
+
+        alert(
+          `Fichier features_${numTeams}_equipes.html généré avec succès!\n\n` +
+            `Total: ${totalStories} US réparties sur ${numTeams} équipes.\n` +
+            `Basse: ${complexityBasseCount} US\n` +
+            `Moyenne: ${complexityMoyenneCount} US\n` +
+            `Élevée: ${complexityEleveeCount} US`
+        );
       }
 
+      // Attacher le gestionnaire au bouton de génération
       document.addEventListener("DOMContentLoaded", () => {
-        // Branchement du Panneau Admin (dans le fichier maître uniquement)
         const generateButton = document.getElementById("generate-button");
         if (generateButton) {
           generateButton.addEventListener("click", generateAndDownload);
         }
-
-        // Branchement des boutons et des toggles pour le fichier MAÎTRE
-        const attachMasterListeners = () => {
-          document
-            .getElementById("expand-all-btn")
-            ?.addEventListener("click", expandAll);
-          document
-            .getElementById("collapse-epics-btn")
-            ?.addEventListener("click", collapseAllEpics);
-          document
-            .getElementById("collapse-modules-btn")
-            ?.addEventListener("click", collapseAllModules);
-
-          document
-            .querySelectorAll(".toggle-module-header")
-            .forEach((header) => {
-              header.addEventListener("click", () => {
-                header
-                  .closest(".module-container")
-                  .classList.toggle("collapsed");
-              });
-            });
-          document.querySelectorAll(".toggle-epic-header").forEach((header) => {
-            header.addEventListener("click", () => {
-              header.closest(".epic-container").classList.toggle("collapsed");
-            });
-          });
-        };
-        attachMasterListeners();
       });
+
+      // Chargement initial depuis le CSV
+      loadAndRender();
     </script>
   </body>
 </html>

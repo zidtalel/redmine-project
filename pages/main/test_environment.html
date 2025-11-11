@@ -263,14 +263,14 @@
       🏠 Accueil
     </a>
     <div class="container">
-      <h1>Architecture et Environnement de Test Alfresco</h1>
+      <h1>Architecture et Environnement de Test Redmine</h1>
 
       <div class="section-card">
         <h2>Serveur de Test Principal</h2>
         <p style="font-size: 1.1em; font-weight: 600">
-          Application à tester : CMS Alfresco
+          Application à tester : Redmine
           <span style="font-weight: bold; color: #ef4444"
-            >(Version 7.4-7.4.1-1)</span
+            >(Version 5.1.1.stable)</span
           >
         </p>
 
@@ -286,7 +286,7 @@
           </li>
           <li>
             <span class="key">Tunnel d'accès (HTTP)</span>
-            <span class="value">205.236.44.133:80</span>
+            <span class="value">205.236.44.131:80</span>
           </li>
           <li>
             <span class="key">Session SSH</span>
@@ -302,17 +302,17 @@
           </li>
           <li>
             <span class="key">Mémoire Allouée</span>
-            <span class="value">4.00 GiB</span>
+            <span class="value">2.00 GiB</span>
           </li>
           <li>
             <span class="key">Utilisation Mémoire Actuelle</span>
             <span class="value" style="color: #ef4444; font-weight: bold"
-              >92.97% (3.72 GiB)</span
+              >38.32% (784.80 Mio)</span
             >
           </li>
           <li>
             <span class="key">Disque Dur</span>
-            <span class="value">10G (local-lvm:vm-304-disk-0)</span>
+            <span class="value">10G (local-lvm:vm-302-disk-0)</span>
           </li>
           <li>
             <span class="key">Contrôleur Réseau/SCSI</span>
@@ -338,48 +338,22 @@
           <li>
             <span class="category">Gestion des Tests et Anomalies</span>
             <span class="tools"
-              ><strong>Xray</strong> (Cas de Tests, Exécution, Rapports
+              ><strong>Qality</strong> (Cas de Tests, Exécution, Rapports
               d'exécution), <strong>Jira</strong> (Fiches d'anomalies)</span
             >
           </li>
           <li>
             <span class="category">Tests Fonctionnels</span>
+            <span class="tools"><strong>Robot Framework</strong></span>
+          </li>
+          <li>
+            <span class="category">Cadre d'Exécution Robot</span>
             <span class="tools"
-              ><strong>Robot Framework</strong> et
-              <strong>Webdriver (Java)</strong></span
-            >
-          </li>
-          <li>
-            <span class="category">Tests d'Acceptation</span>
-            <span class="tools"><strong>Cucumber (Java)</strong></span>
-          </li>
-          <li>
-            <span class="category">Tests d'API</span>
-            <span class="tools"><strong>Postman</strong></span>
-          </li>
-          <li>
-            <span class="category">Tests de Charge</span>
-            <span class="tools"><strong>Jmeter</strong></span>
-          </li>
-          <li>
-            <span class="category">Cadre d'Exécution Java</span>
-            <span class="tools"
-              ><strong>Maven</strong>, <strong>Junit</strong> et
-              <strong>TestNG</strong></span
+              ><strong>Visual Studio Code</strong> et
+              <strong>Python</strong></span
             >
           </li>
         </ul>
-
-        <div class="api-link-info">
-          <strong>Documentation des End-Points API :</strong><br />
-          Pour effectuer les tests d'API, veuillez consulter la documentation
-          technique officielle des end-points Alfresco :
-          <a
-            href="https://api-explorer.alfresco.com/api-explorer/"
-            target="_blank"
-            >Alfresco API Explorer</a
-          >
-        </div>
       </div>
 
       <div class="section-card">
@@ -389,7 +363,7 @@
         <div class="note">
           Chaque testeur dispose d'une
           <strong>machine virtuelle locale</strong> (VM) contenant une instance
-          d'Alfresco (v. 7.4-7.4.1-1). Cette VM doit être utilisée comme
+          de Redmine (v. 5.1.1.stable). Cette VM doit être utilisée comme
           <strong>environnement de secours</strong> en cas de panne ou
           d'indisponibilité prolongée du serveur de test principal.
         </div>

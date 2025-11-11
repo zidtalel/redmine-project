@@ -1,0 +1,239 @@
+﻿Code composant;Composant;Code Epic;Titre Epic;Code User Story;Titre User Story;Complexité
+RQ1;Accueil et recherche;RQ1.1;Recherche;RQ1.1.F1;Recherche simple avec mots clés;Basse
+RQ1;Accueil et recherche;RQ1.2;Recherche avancée;RQ1.2.F1;Recherche par thématique (Demandes, annonces, documents, …);Moyenne
+RQ1;Accueil et recherche;RQ1.2;Recherche avancée;RQ1.2.F2;Recherche par option;Moyenne
+RQ1;Accueil et recherche;RQ1.3;S'enregistrer;RQ1.3.F1;S'enregistrer en créant un compte à partir de la page de connexion.;Moyenne
+RQ2;Ma page;RQ2;Gestion des cadrans sur ma page;RQ2.F1;Ajouter un cadran;Moyenne
+RQ2;Ma page;RQ2;Gestion des cadrans sur ma page;RQ2.F2;Supprimer un cadran;Basse
+RQ2;Ma page;RQ2;Gestion des cadrans sur ma page;RQ2.F3;Déplacer un cadran;Basse
+RQ2;Ma page;RQ2.1;Demandes qui me sont assignées;RQ2.1.F1;Configurer les colonnes affichées;Moyenne
+RQ2;Ma page;RQ2.1;Demandes qui me sont assignées;RQ2.1.F2;Chaque demande affichée est cliquable;Basse
+RQ2;Ma page;RQ2.2;Demandes soumises;RQ2.2.F1;Configurer les colonnes affichées;Moyenne
+RQ2;Ma page;RQ2.2;Demandes soumises;RQ2.2.F2;Chaque demande affichée est cliquable;Basse
+RQ2;Ma page;RQ2.3;Demandes mises à jour;RQ2.3.F1;Configurer les colonnes affichées;Moyenne
+RQ2;Ma page;RQ2.3;Demandes mises à jour;RQ2.3.F2;Chaque demande affichée est cliquable;Basse
+RQ2;Ma page;RQ2.4;Demandes surveillées;RQ2.4.F1;Configurer les colonnes affichées;Moyenne
+RQ2;Ma page;RQ2.4;Demandes surveillées;RQ2.4.F2;Chaque demande affichée est cliquable;Basse
+RQ2;Ma page;RQ2.5;Demandes;RQ2.5.F1;Sélectionner un rapport personnalisé;Moyenne
+RQ2;Ma page;RQ2.5;Demandes;RQ2.5.F2;Chaque demande affichée est cliquable;Basse
+RQ2;Ma page;RQ2.6;Dernières annonces;RQ2.6.F1;Affichage de la liste des annonces;Basse
+RQ2;Ma page;RQ2.6;Dernières annonces;RQ2.6.F2;Chaque annonce affichée est cliquable;Basse
+RQ2;Ma page;RQ2.7;Calendrier;RQ2.7.F1;Affichage de la liste des demandes sur le calendrier;Moyenne
+RQ2;Ma page;RQ2.7;Calendrier;RQ2.7.F2;Chaque élément du calendrier est cliquable;Basse
+RQ2;Ma page;RQ2.8;Documents;RQ2.8.F1;Affichage de la liste des documents;Basse
+RQ2;Ma page;RQ2.8;Documents;RQ2.8.F2;Chaque document affiché est cliquable;Basse
+RQ2;Ma page;RQ2.9;Temps passé;RQ2.9.F1;Définir le nombre de jours affichés;Basse
+RQ2;Ma page;RQ2.9;Temps passé;RQ2.9.F2;Chaque temps passé s'affiche avec un lien cliquable qui permet d'afficher le temps passé;Basse
+RQ2;Ma page;RQ2.10;Activités;RQ2.10.F1;Affichage de la liste des activités par catégorie;Basse
+RQ2;Ma page;RQ2.10;Activités;RQ2.10.F2;Chaque activité s'affiche avec un lien cliquable qui permet d'aller sur l'activité;Basse
+RQ3;Mon compte;RQ3.1;Gestion du compte;RQ3.1.F1;Ajouter une adresse email;Moyenne
+RQ3;Mon compte;RQ3.1;Gestion du compte;RQ3.1.F2;Changer de mot de passe;Élevée
+RQ3;Mon compte;RQ3.1;Gestion du compte;RQ3.1.F3;Supprimer mon compte;Élevée
+RQ3;Mon compte;RQ3.1;Gestion du compte;RQ3.1.F4;Réinitialiser le compte;Élevée
+RQ3;Mon compte;RQ3.1;Gestion du compte;RQ3.1.F5;Modifier les données du compte;Moyenne
+RQ3;Mon compte;RQ3.1;Gestion du compte;RQ3.1.F6;Afficher la page de profil;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F1;Le lien du site web permet d'aller sur le site web du projet;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F2;Le cadran Suivi des demandes affiche des statistiques sur les demandes;Moyenne
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F3;Les liens dans le cadran Suivi des demandes parmettent d'afficher le résultat des requêtes respectives;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F4;Le bouton Loupe dans le cadran Suivi des demandes permet d'afficher des statistiques détaillées sur les demandes;Moyenne
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F5;Le cadran Suivi du temps affiche des statistiques sur le temps passé;Moyenne
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F6;Les liens dans le cadran Suivi du temps parmettent d'afficher le résultat des requêtes respectives;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F7;Le cadran Dernières annonces affiches les dernières annonce du projet;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F8;Les annonces affichées sont cliquables;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F9;Le cadran Membres affiche la liste des membres du projet;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F10;Les membres du projet dans le cadran Membres sont cliquables;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F11;Ajouter le projet aux favoris;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F12;Retirer le projet des favoris;Basse
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F13;Créer un nouveau sous-projet;Moyenne
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F14;Fermer le projet;Moyenne
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F15;Supprimer le projet;Élevée
+RQ4;Projets;RQ4.1;Aperçu d'un projet;RQ4.1.F16;Ouvrir l'onglet de configuration du projet;Basse
+RQ4;Projets;RQ4.2;Activités du projet;RQ4.2.F1;Affichage de la liste des activités par catégorie;Basse
+RQ4;Projets;RQ4.2;Activités du projet;RQ4.2.F2;Les éléments de la liste des activités sont cliquables;Basse
+RQ4;Projets;RQ4.2;Activités du projet;RQ4.2.F3;Filtrer les activités par date;Moyenne
+RQ4;Projets;RQ4.2;Activités du projet;RQ4.2.F4;Filtrer les activité par utilisateur;Moyenne
+RQ4;Projets;RQ4.2;Activités du projet;RQ4.2.F5;Filtrer les activités par catégorie;Moyenne
+RQ4;Projets;RQ4.2;Activités du projet;RQ4.2.F6;Naviguer dans la liste des activités par période;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F1;Créer une nouvelle demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F2;Afficher le résumé des demandes;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F3;Importer des demandes;Élevée
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F4;Filtrer la liste des demandes;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F5;Configurer les options d'affichage du tableau des demandes;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F6;Trier la liste des demandes;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F7;Exporter des demandes;Élevée
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F8;Modifier une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F9;Modifier le statut d'une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F10;Modifier le tracker d'une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F11;Modifier la priorité d'une demande;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F12;Modifier la version cible d'une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F13;Modifier l'assignation d'une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F14;Modifier le pourcentage de réalisation;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F15;Affecter des observateurs;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F16;Surveiller une demande;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F17;Ne plus surveiller une demande;Basse
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F18;Saisir du temps passé sur une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F19;Ajouter une sous-tâche à une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F20;Copier une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F21;Supprimer une demande;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F22;Créer et visualiser un rapport de demandes;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F23;Modifier un rapport de demandes;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F24;Supprimer un rapport de demandes;Moyenne
+RQ4;Projets;RQ4.3;Gestion des demandes;RQ4.3.F25;Effacer les résultats d'un rapport de demandes;Basse
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F1;Saisir du temps passé sur une demande;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F2;Importer du temps passé;Élevée
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F3;Filtrer la liste des temps passés;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F4;Configurer les options d'affichage du tableau du temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F5;Trier la liste des temps passés;Basse
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F6;Modifier un temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F7;Supprimer un temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F8;Modifier l'activité du temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F9;Exporter du temps passé;Élevée
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F10;Créer et visualiser un rapport de temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F11;Modifier un rapport de temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F12;Supprimer un rapport de temps passé;Moyenne
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F13;Effacer les résultats d'un rapport de temps passé;Basse
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F14;Afficher le rapport récapitulatif du temps passé;Basse
+RQ4;Projets;RQ4.4;Temps passé;RQ4.4.F15;Exporter le rapport récapitulatif du temps passé;Élevée
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F1;Filtrer le diagramme de Gantt;Moyenne
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F2;Configurer les colonnes du diagramme de Gantt;Moyenne
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F3;Créer et visualiser un rapport diagramme de Gantt;Moyenne
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F4;Modifier un rapport diagramme de Gantt;Moyenne
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F5;Supprimer un rapport diagramme de Gantt;Moyenne
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F6;Effacer les résultats d'un rapport diagramme de Gantt;Basse
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F7;Zoom avant/arriére, navigation dans le diagramme de Gantt;Basse
+RQ4;Projets;RQ4.5;Gantt;RQ4.5.F8;Exporter le diagramme de Gantt;Élevée
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F1;Filtrer le calendrier;Moyenne
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F2;Configurer les colonnes du calendrier;Moyenne
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F3;Créer et visualiser un rapport calendrier;Moyenne
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F4;Modifier un rapport calendrier;Moyenne
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F5;Supprimer un rapport calendrier;Moyenne
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F6;Effacer les résultats d'un rapport calendrier;Basse
+RQ4;Projets;RQ4.6;Calendrier;RQ4.6.F7;Navigation dans le calendrier;Basse
+RQ4;Projets;RQ4.7;Documents;RQ4.7.F1;Ajouter un nouveau document;Moyenne
+RQ4;Projets;RQ4.7;Documents;RQ4.7.F2;Modifier un document ajouté;Moyenne
+RQ4;Projets;RQ4.7;Documents;RQ4.7.F3;Supprimé un document ajouté;Moyenne
+RQ4;Projets;RQ4.7;Documents;RQ4.7.F4;Ajouter un nouveau fichier à un document déjà créé;Moyenne
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F1;Créer une nouvelle annonce;Moyenne
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F2;Surveiller une annonce;Basse
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F3;Ne plus surveiller une annonce;Basse
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F4;Exporter les annonces;Élevée
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F5;Modifier une annonce;Moyenne
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F6;Supprimer une annonce;Moyenne
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F7;Ajouter un commentaire à une annonce;Basse
+RQ4;Projets;RQ4.8;Annonces;RQ4.8.F8;Supprimer un commentaire;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F1;Modifier le contenu du wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F2;Surveiller la page wiki;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F3;Ne plus surveiller la page wiki;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F4;Verrouiller la page wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F5;Déverrouiller la page wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F6;Renommer la page wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F7;Supprimer la page wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F8;Créer une nouvelle page wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F9;Ajouter un fichier à une page wiki;Moyenne
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F10;Afficher l'historique de la page wiki;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F11;Afficher la page de démarrage;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F12;Afficher l'index par titre;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F13;Afficher l'index par date;Basse
+RQ4;Projets;RQ4.9;Wiki;RQ4.9.F14;Exporter une page wiki;Moyenne
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F1;Créer un nouveau message dans un forum;Moyenne
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F2;Surveiller un forum;Basse
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F3;Ne plus surveiller un forum;Basse
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F4;Trier la liste des forums;Basse
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F5;Surveiller un message sur un forum;Basse
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F6;Ne plus surveiller un message sur un forum;Basse
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F7;Citer un message sur un forum;Moyenne
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F8;Modifier un message sur un forum;Moyenne
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F9;Supprimer un message sur un forum;Moyenne
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F10;Répondre à un message sur un forum;Basse
+RQ4;Projets;RQ4.10;Forums;RQ4.10.F11;Ajouter un observateur sur un message sur un forum;Basse
+RQ4;Projets;RQ4.11;Roadmap;RQ4.11.F1;Affichage de l'avancement sur une version;Moyenne
+RQ4;Projets;RQ4.11;Roadmap;RQ4.11.F2;Filtrer la liste des versions par tracker;Moyenne
+RQ4;Projets;RQ4.11;Roadmap;RQ4.11.F3;Afficher l'aperçu sur une version;Basse
+RQ4;Projets;RQ4.11;Roadmap;RQ4.11.F4;Modifier une version;Moyenne
+RQ4;Projets;RQ4.11;Roadmap;RQ4.11.F5;Supprimer une version;Moyenne
+RQ4;Projets;RQ4.12;Fichiers;RQ4.12.F1;Ajouter un nouveau fichier;Moyenne
+RQ4;Projets;RQ4.12;Fichiers;RQ4.12.F2;Trier la liste des fichiers;Basse
+RQ4;Projets;RQ4.12;Fichiers;RQ4.12.F3;Visualiser un fichier;Basse
+RQ4;Projets;RQ4.12;Fichiers;RQ4.12.F4;Télécharger un fichier;Basse
+RQ4;Projets;RQ4.12;Fichiers;RQ4.12.F5;Supprimer un fichier;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F1;Modifier les données d'un projet;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F2;Ajouter des membres à un projet;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F3;Modifier les membres d'un projet;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F4;Supprimer les membres d'un projet;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F5;Configurer les trackers de suivi des demandes;Élevée
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F6;Configurer la version par défaut de suivi des demandes;Élevée
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F7;Configurer l'assignation par défaut de suivi des demandes;Élevée
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F8;Créer une nouvelle version;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F9;Filtrer la liste des versions;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F10;Modifier une version;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F11;Supprimer une version;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F12;Fermer les versions terminées;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F13;Créer une nouvelle catégorie de demandes;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F14;Modifier une catégorie de demandes;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F15;Supprimer une catégorie de demandes;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F16;Créer un nouveau forum;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F17;Modifier un forum;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F18;Supprimer un forum;Moyenne
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F19;Trier la liste des forums;Basse
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F20;Configurer les activités pour le suivi du temps;Élevée
+RQ4;Projets;RQ4.13;Configuration;RQ4.13.F21;Réinitialiser les activités pour le suivi du temps;Élevée
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F1; Créer un nouveau projet ;Élevée
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F2; Filtrer la liste des projets ;Moyenne
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F3; Modifier un projet ;Moyenne
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F4; Archiver un projet ;Moyenne
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F5; Désarchiver un projet ;Moyenne
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F6; Copier un projet ;Élevée
+RQ5;Administration;RQ5.1;Gestion des projets;RQ5.1.F7; Supprimer un projet ;Élevée
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F1; Créer un utilisateur ;Élevée
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F2; Filtrer la liste des utilisateurs ;Moyenne
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F3; Trier la liste des utilisateurs ;Basse
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F4; Importer une liste d'utilisateurs ;Élevée
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F5; Modifier un utilisateur ;Moyenne
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F6; Verrouiller un utilisateur ;Moyenne
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F7; Déverrouiller un utilisateur ;Moyenne
+RQ5;Administration;RQ5.2;Gestion des utilisateurs;RQ5.2.F8; Supprimer un utilisateur ;Élevée
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F1; Créer un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F2; Filtrer la liste des groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F3; Modifier un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F4; Supprimer un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F5; Ajouter des utilisateurs à un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F6; Supprimer des utilisateur d'un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F7; Ajouter des projets à un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F8; Retirer un projet d'un groupe ;Moyenne
+RQ5;Administration;RQ5.3;Gestion des groupes utilisateurs;RQ5.3.F9; Modifier l'ajout d'un projet à un groupe ;Moyenne
+RQ5;Administration;RQ5.4;Rôles et permissions;RQ5.4.F1; Créer un nouveau rôle ;Élevée
+RQ5;Administration;RQ5.4;Rôles et permissions;RQ5.4.F2; Trier la liste des rôles ;Basse
+RQ5;Administration;RQ5.4;Rôles et permissions;RQ5.4.F3; Copier un rôle ;Moyenne
+RQ5;Administration;RQ5.4;Rôles et permissions;RQ5.4.F4; Supprimer un rôle ;Élevée
+RQ5;Administration;RQ5.4;Rôles et permissions;RQ5.4.F5; Afficher et modifier la synthèse des permissions des rôles ;Élevée
+RQ5;Administration;RQ5.5;Trackers;RQ5.5.F1; Créer un nouveau tracker ;Élevée
+RQ5;Administration;RQ5.5;Trackers;RQ5.5.F2; Modifier un tracker ;Élevée
+RQ5;Administration;RQ5.5;Trackers;RQ5.5.F3; Trier la liste des trackers ;Basse
+RQ5;Administration;RQ5.5;Trackers;RQ5.5.F4; Supprimer un tracker ;Élevée
+RQ5;Administration;RQ5.5;Trackers;RQ5.5.F5; Copier un tracker ;Moyenne
+RQ5;Administration;RQ5.5;Trackers;RQ5.5.F6; Afficher et modifier le résumé des trackers ;Moyenne
+RQ5;Administration;RQ5.6;Statuts des demandes;RQ5.6.F1; Créer un statut ;Moyenne
+RQ5;Administration;RQ5.6;Statuts des demandes;RQ5.6.F2; Modifier un statut ;Moyenne
+RQ5;Administration;RQ5.6;Statuts des demandes;RQ5.6.F3; Supprimer un statut ;Élevée
+RQ5;Administration;RQ5.6;Statuts des demandes;RQ5.6.F4; Trier la liste des statuts ;Basse
+RQ5;Administration;RQ5.7;Workflow;RQ5.7.F1; Workflow : Modifier le statut pour un rôle et un tracker ;Élevée
+RQ5;Administration;RQ5.7;Workflow;RQ5.7.F2; Workflow : Modifier la permission sur les champs pour un rôle et un tracker ;Élevée
+RQ5;Administration;RQ5.7;Workflow;RQ5.7.F3; Copier un workflow ;Élevée
+RQ5;Administration;RQ5.7;Workflow;RQ5.7.F4; Afficher le résumé des workflows ;Moyenne
+RQ5;Administration;RQ5.8;Champs personnalisés;RQ5.8.F1; Créer un nouveau champ personnalisé ;Élevée
+RQ5;Administration;RQ5.8;Champs personnalisés;RQ5.8.F2; Modifier un champ personnalisé ;Élevée
+RQ5;Administration;RQ5.8;Champs personnalisés;RQ5.8.F3; Copier un champ personnalisé ;Moyenne
+RQ5;Administration;RQ5.8;Champs personnalisés;RQ5.8.F4; Supprimer un champ personnalisé ;Élevée
+RQ5;Administration;RQ5.8;Champs personnalisés;RQ5.8.F5; Trier la liste des champs personnalisés ;Basse
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F1; Créer une catégorie de documents ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F2; Modifier une catégorie de documents ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F3; Supprimer une catégorie de documents ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F4; Trier la liste des catégories de documents ;Basse
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F5; Créer une priorité ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F6; Modifier une priorité ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F7; Supprimer une priorité ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F8; Trier la liste des priorités ;Basse
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F9; Créer une activité ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F10; Modifier une activité ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F11; Supprimer une activité ;Moyenne
+RQ5;Administration;RQ5.9;Liste de valeurs;RQ5.9.F12; Trier la liste des activités ;Basse

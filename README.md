@@ -1,4 +1,4 @@
-# 📚 Portail de Documentation - Projet de Test Alfresco
+# 📚 Portail de Documentation - Projet de Test Redmine
 
 > Plateforme pédagogique centralisée pour l'enseignement des tests logiciels et de l'automatisation
 
@@ -8,11 +8,11 @@
 
 ## 🎯 Vue d'ensemble
 
-Ce portail web est conçu comme **ressource pédagogique** pour l'enseignement des techniques de test logiciel, de l'automatisation et de la gestion de projet Agile. Il centralise l'ensemble de la documentation, guides et outils nécessaires aux étudiants pour mener à bien un projet de test sur le CMS Alfresco.
+Ce portail web est conçu comme **ressource pédagogique** pour l'enseignement des techniques de test logiciel, de l'automatisation et de la gestion de projet Agile. Il centralise l'ensemble de la documentation, guides et outils nécessaires aux étudiants pour mener à bien un projet de test sur l'application Redmine.
 
-**Public cible :** Étudiants en informatique (Groupe 1292)  
-**Contexte :** Projet de test du CMS Alfresco dans le cours projet de synthèse  
-**Technologies couvertes :** Robot Framework, Selenium WebDriver, Gherkin/BDD, XPath, PICT (pairwise testing), Jira, Xray
+**Public cible :** Étudiants en informatique (Groupes SQL)  
+**Contexte :** Projet de test de l'application Redmine dans les cours Élaboration des tests / Assurance qualité  
+**Technologies couvertes :** Gherkin/BDD, PICT (pairwise testing), Classes d'Équivalence, Valeurs Frontières, Jira/Xray/Zephyr
 
 ---
 
@@ -26,38 +26,41 @@ Ce portail web est conçu comme **ressource pédagogique** pour l'enseignement d
 
 ### 📖 Guides pédagogiques complets
 
-| Guide | Description |
-|-------|-------------|
-| **Plan de test (ISO 29119-3)** | Structure conforme à la norme internationale |
-| **Plan d'automatisation** | Bonnes pratiques, outils, organisation |
-| **Rapport de tests** | Modèle, métriques, traçabilité |
-| **Gherkin / BDD** | Écriture de scénarios en langage naturel |
-| **Markdown** | Syntaxe, astuces, visualisation dans navigateurs |
-| **PICT / Pairwise** | Guide complet avec podcasts audio (FR/EN) |
+| Guide | Description | Podcast |
+|-------|-------------|---------|
+| **Plan de test (ISO 29119-3)** | Structure conforme à la norme internationale | - |
+| **Gherkin / BDD** | Écriture de scénarios en langage naturel | 🎙️ FR/EN |
+| **PICT / Pairwise** | Génération optimale de données de test | 🎙️ FR/EN |
+| **Classes d'Équivalence** | Techniques PCE et AVF pour tests boîte noire | 🎙️ FR/EN |
+| **Markdown** | Syntaxe, astuces, visualisation dans navigateurs | - |
+| **Exemple de User Story** | Modèles et templates avec critères d'acceptation | 🎙️ FR/EN |
 
 ### 🛠️ Ressources techniques
 
-- **Aide-mémoire XPath** : Sélecteurs et astuces pour localiser les éléments
-- **Environnement de test** : Infrastructure, accès, jeux de données
 - **Planification & Timeline** : Phases du projet, jalons, deadlines (dates configurables via JSON)
-- **User Stories & Epics** : Backlog complet avec Épics et user stories (multiple variantes par équipe)
-- **Exemples de User Story** : Modèles et templates pour user stories et critères d'acceptation
-- **Quiz interactifs** : Évaluation des connaissances (avec mode local)
+- **User Stories & Epics** : Backlog complet avec Épics et user stories (variantes par équipe : 2, 3, 4, 5 équipes)
+- **Exemple de User Story** : Modèles et templates avec critères d'acceptation et podcast
+- **Environnement de test** : Infrastructure, accès, jeux de données
+- **Quiz interactifs** : Évaluation des connaissances avec correction automatique et mode local
+- **FAQ dynamique** : Système de questions-réponses avec recherche et catégories
 
 ### 🎯 Fonctionnalités dynamiques
 
-- **Annonces** : Carrousel rotatif et panneau latéral avec annonces prioritaires
+- **Annonces** : Carrousel rotatif et panneau latéral avec annonces prioritaires (gestion via JSON/GitHub API)
 - **Timeline configurable** : Dates de sprints modifiables via JSON (admin)
-- **Quiz** : Système de quiz interactif avec correction automatique
-- **GitHub API** : Sauvegarde automatique des configurations (annonces, quiz, timeline)
+- **Quiz** : Système de quiz interactif avec correction automatique et statistiques
+- **FAQ** : Système de questions-réponses avec recherche dynamique et gestion admin
+- **Podcast Audio** : Support audio bilingue (FR/EN) pour plusieurs guides pédagogiques
+- **GitHub API** : Sauvegarde automatique des configurations (annonces, quiz, timeline, FAQ)
 
 ### 👨‍💼 Interface d'administration
 
 - **Gestion des Annonces** : Ajout, modification, activation/désactivation avec GitHub API
 - **Gestion des Quiz** : Création et gestion de quiz (questions, réponses, explications)
+- **Gestion de la FAQ** : Création et organisation de questions-réponses par catégories
 - **Gestion du Calendrier** : Configuration des dates de sprints pour la timeline
-- **Configuration** : Paramètres globaux (placeholder)
 - **Matrice des User Stories** : Vue de toutes les user stories organisées par équipe
+- **Configuration** : Paramètres globaux du portail
 
 ### 🎨 Interface utilisateur
 
@@ -75,7 +78,7 @@ Ce portail web est conçu comme **ressource pédagogique** pour l'enseignement d
 ## 📁 Structure du projet
 
 ```
-alfresco-project/
+redmine-project/
 │
 ├── index.html                    # Page de connexion (authentification)
 ├── menu.html                     # Portail principal (hub de navigation)
@@ -116,17 +119,17 @@ alfresco-project/
    - Settings → Pages → Source : `master` branch
 
 2. **Accéder au portail**
-   - URL : `https://<votre-username>.github.io/alfresco-project/`
+   - URL : `https://<votre-username>.github.io/redmine-project/`
 
 ### Utilisation en local
 
 ```bash
 # Cloner le dépôt
-git clone https://github.com/<votre-username>/alfresco-project.git
+git clone https://github.com/<votre-username>/redmine-project.git
 
 # Ouvrir directement index.html dans un navigateur
 # Ou utiliser un serveur local (recommandé)
-cd alfresco-project
+cd redmine-project
 python -m http.server 8000
 # Ouvrir http://localhost:8000
 ```
@@ -214,7 +217,7 @@ Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plu
 
 **Enseignant** : Talel Zid  (zidtalel@gmail.com)  
 **Institution** : Collège de Bois de Boulogne  
-**Année académique** : 2025
+**Année académique** : 2026
 
 ---
 
@@ -228,7 +231,7 @@ Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plu
 
 <div align="center">
 
-**Dernière mise à jour :** 5 novembre 2025
+**Dernière mise à jour :** janvier 2026
 
 Made with ❤️ for education
 

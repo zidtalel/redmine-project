@@ -1,12 +1,11 @@
 {
   "sprints": [
-    { "id": 1, "label": "Sprint 1", "date": "3 novembre" },
-    { "id": 2, "label": "Sprint 2", "date": "10 novembre" },
-    { "id": 3, "label": "Sprint 3", "date": "17 novembre" },
-    { "id": 4, "label": "Sprint 4", "date": "24 novembre" },
-    { "id": 5, "label": "Sprint 5", "date": "1er décembre" },
-    { "id": 6, "label": "Sprint 6", "date": "8 décembre au 23 janvier" },
-    { "id": 7, "label": "Sprint 7", "date": "26 janvier" },
-    { "id": 8, "label": "Présenter les résultats", "date": "2 février" }
+    { "id": 1, "label": "Semaine 1", "date": "12 janvier" },
+    { "id": 2, "label": "Semaine 2", "date": "19 janvier" },
+    { "id": 3, "label": "Semaine 3", "date": "26 janvier" },
+    { "id": 4, "label": "Semaines 4 et 5", "date": "3 et du 9 février" },
+    { "id": 5, "label": "Semaines 6 et 7", "date": "16 et du 23 février" },
+    { "id": 6, "label": "Semaines 8 et 9", "date": "2 et du 9 mars" },
+    { "id": 7, "label": "Semaine 10", "date": "16 mars" }
   ]
 }

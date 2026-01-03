@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      Guide — Classes d'Équivalence et Valeurs Frontières — Redmine Exemples
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #f4f7fa;
+        --card: #fff;
+        --muted: #6b7280;
+        --accent: #216ba5;
+        --accent-2: #1d77b8;
+        --radius: 12px;
+        --maxw: 1100px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system,
+          "Helvetica Neue", Arial;
+      }
+      body {
+        background: linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+        color: #222;
+        padding: 28px;
+        display: flex;
+        justify-content: center;
+      }
+      .wrap {
+        width: 100%;
+        max-width: var(--maxw);
+      }
+      header {
+        background: linear-gradient(
+          90deg,
+          rgba(33, 107, 165, 0.12),
+          rgba(29, 119, 184, 0.06)
+        );
+        padding: 20px 24px;
+        border-radius: calc(var(--radius) + 4px);
+        margin-bottom: 18px;
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        border: 1px solid rgba(13, 66, 104, 0.06);
+      }
+      .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 20px;
+        box-shadow: 0 6px 18px rgba(33, 107, 165, 0.12);
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        color: #083b5a;
+      }
+      p.lead {
+        margin: 2px 0 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .grid {
+        display: grid;
+        /* Deux colonnes : principal (2/3) et sidebar (1/3) */
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+      .card {
+        background: var(--card);
+        padding: 22px;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 20px rgba(20, 30, 40, 0.04);
+        border: 1px solid rgba(16, 24, 32, 0.03);
+      }
+      main.card {
+        padding: 26px;
+      }
+      aside.card {
+        position: sticky;
+        top: 20px;
+        padding: 22px;
+        height: fit-content;
+      }
+      h2 {
+        color: #0f3e5f;
+        margin-top: 0;
+        font-size: 18px;
+        border-bottom: 2px solid #e6edf4;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+      }
+      h3 {
+        color: #123d57;
+        margin-bottom: 8px;
+        margin-top: 20px;
+        font-size: 16px;
+      }
+      h4 {
+        color: #1e4d6b;
+        margin-bottom: 8px;
+        margin-top: 15px;
+        font-size: 15px;
+      }
+      p,
+      li {
+        color: #233242;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      ul,
+      ol {
+        margin-left: 18px;
+        padding-left: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #e6edf4;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f2f7fb;
+        color: #123d57;
+        font-weight: 600;
+      }
+      pre {
+        background: #f6fbff;
+        padding: 15px;
+        border-left: 4px solid var(--accent);
+        border-radius: 8px;
+        overflow: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+          monospace;
+        font-size: 13px;
+        color: #0b3b57;
+        line-height: 1.5;
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+      .tip-box {
+        background: #e6f7ff;
+        border: 1px solid #b3e0ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      .tip-box h4 {
+        color: var(--accent);
+        margin: 0 0 5px 0;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .tip-box p {
+        margin: 0;
+        font-size: 14px;
+      }
+      .warning-box {
+        background: #fff8e1;
+        border: 1px solid #ffe082;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      .warning-box h4 {
+        color: #f57c00;
+        margin: 0 0 5px 0;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .success-box {
+        background: #e8f5e9;
+        border: 1px solid #a5d6a7;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      .success-box h4 {
+        color: #2e7d32;
+        margin: 0 0 5px 0;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .list-unstyled {
+        list-style: none;
+        padding-left: 0;
+      }
+      .list-unstyled li {
+        margin-bottom: 8px;
+      }
+      .highlight {
+        background-color: #fff3cd;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      @media (max-width: 1000px) {
+        .grid {
+          grid-template-columns: 1fr 320px;
+        }
+      }
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        aside.card {
+          order: 2;
+          position: static;
+        }
+      }
+      .home-link {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        font-size: 0.95em;
+        font-weight: 600;
+        text-decoration: none;
+        color: #495057;
+        padding: 8px 15px;
+        border-radius: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease-in-out;
+      }
+      .home-link:hover {
+        background-color: #e9ecef;
+        color: #007bff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+      }
+      @media screen and (max-width: 768px) {
+        .home-link {
+          font-size: 0.85em;
+          padding: 5px 10px;
+          top: 10px;
+          left: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="../main/menu.html"
+      class="home-link"
+      title="Retour à la page d'accueil"
+      >🏠 Accueil</a
+    >
+    <div class="wrap" role="main" aria-labelledby="title">
+      <header>
+        <div class="logo" aria-hidden="true">CE</div>
+        <div>
+          <h1 id="title">
+            Guide — Classes d'Équivalence et Valeurs Frontières
+          </h1>
+          <p class="lead">
+            Techniques de conception de tests basées sur les valeurs (Boîte
+            Noire) pour une couverture optimale des cas de test.
+          </p>
+        </div>
+      </header>
+
+      <div class="grid">
+        <main class="card" aria-label="Contenu du guide Classes d'Équivalence">
+          <h2>Introduction aux Techniques Basées sur les Valeurs</h2>
+          <p>
+            Comprendre comment choisir des données de test efficaces est
+            essentiel pour garantir la qualité d'un logiciel. Les techniques
+            basées sur les valeurs, telles que le
+            <strong>Partitionnement par Classes d'Équivalence (PCE)</strong> et
+            l'<strong>Analyse des Valeurs Frontières (AVF)</strong>, sont des
+            méthodes de <strong>boîte noire</strong> qui permettent de réduire
+            le nombre de cas de test nécessaires tout en maximisant la
+            couverture.
+          </p>
+
+          <div class="tip-box">
+            <h4><i class="fas fa-lightbulb"></i> Objectif Principal</h4>
+            <p>
+              Ces techniques permettent de
+              <strong>réduire drastiquement</strong>
+              le nombre de cas de test tout en garantissant une couverture
+              exhaustive des comportements du système. Au lieu de tester toutes
+              les valeurs possibles, nous testons des
+              <strong>représentants</strong> de chaque catégorie de valeurs.
+            </p>
+          </div>
+
+          <h2>1. Partitionnement par Classes d'Équivalence (PCE)</h2>
+          <p>
+            Le partitionnement par classes d'équivalence (PCE) est une technique
+            qui consiste à <strong>découper le domaine d'entrée</strong> en
+            classes d'équivalence.
+          </p>
+
+          <h3>Qu'est-ce qu'une Classe d'Équivalence ?</h3>
+          <p>
+            Une classe d'équivalence est un ensemble de valeurs d'entrée qui
+            sont considérées égales (elles ont le <strong>même effet</strong>)
+            pour le système testé.
+          </p>
+
+          <ul>
+            <li>
+              Toutes les valeurs au sein d'une classe sollicitent le système de
+              la <strong>même manière</strong>.
+            </li>
+            <li>
+              Elles ont donc une probabilité équivalente de révéler des défauts.
+            </li>
+            <li>
+              Le but est de
+              <strong
+                >limiter le nombre de valeurs à une seule valeur par classe
+                d'équivalence</strong
+              >.
+            </li>
+          </ul>
+
+          <h3>Application Pratique</h3>
+
+          <h4>Exemple 1 : Domaine Numérique Simple (Valeurs entre 1 et 100)</h4>
+          <p>
+            Considérons un domaine d'entrée où seules les valeurs comprises
+            <strong>entre 1 et 100</strong> (inclus) sont valides.
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Type de Classe</th>
+                <th>Plage de Valeurs</th>
+                <th>Description</th>
+                <th>Choix de Valeur Représentative (PCE)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Classe Valide (CV)</strong></td>
+                <td>De 1 à 100</td>
+                <td>Les valeurs acceptées.</td>
+                <td class="highlight">43</td>
+              </tr>
+              <tr>
+                <td><strong>Classe Invalide 1 (CI)</strong></td>
+                <td>&lt; 1</td>
+                <td>Valeurs invalides à gauche du domaine.</td>
+                <td class="highlight">-5</td>
+              </tr>
+              <tr>
+                <td><strong>Classe Invalide 2 (CI)</strong></td>
+                <td>&gt; 100</td>
+                <td>Valeurs invalides à droite du domaine.</td>
+                <td class="highlight">155</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Nous obtenons ainsi <strong>trois valeurs</strong> (-5, 43, 155)
+            pour couvrir l'ensemble du domaine d'entrée.
+          </p>
+
+          <h4>Exemple Redmine : Champ "Temps Passé" (Heures)</h4>
+          <p>
+            Dans Redmine, lors de la saisie du temps passé sur une tâche, le
+            système accepte les valeurs entre <strong>0.25 et 999.99</strong>
+            heures.
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Type de Classe</th>
+                <th>Plage de Valeurs</th>
+                <th>Valeur de Test PCE</th>
+                <th>Résultat Attendu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>CV</strong></td>
+                <td>0.25 à 999.99</td>
+                <td class="highlight">50.5</td>
+                <td>✅ Accepté</td>
+              </tr>
+              <tr>
+                <td><strong>CI 1</strong></td>
+                <td>&lt; 0.25</td>
+                <td class="highlight">0.10</td>
+                <td>❌ Rejeté (trop petit)</td>
+              </tr>
+              <tr>
+                <td><strong>CI 2</strong></td>
+                <td>&gt; 999.99</td>
+                <td class="highlight">1500.00</td>
+                <td>❌ Rejeté (trop grand)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>2. Analyse des Valeurs Frontières (AVF)</h2>
+          <p>
+            L'analyse des valeurs frontalières est une
+            <strong>méthode complémentaire</strong> au PCE. Elle permet
+            d'analyser le comportement du système avec des
+            <strong>valeurs frontalières</strong> (aux limites des classes).
+          </p>
+
+          <div class="warning-box">
+            <h4><i class="fas fa-exclamation-triangle"></i> Observation Clé</h4>
+            <p>
+              L'expérience montre que les erreurs de codage sont
+              <strong>fréquemment commises aux frontières</strong> des domaines
+              (erreurs de type <code>&lt;</code> au lieu de <code>&lt;=</code>,
+              ou confusion dans les limites).
+            </p>
+          </div>
+
+          <h3>Application Pratique</h3>
+          <p>
+            Pour chaque frontière, nous testons la valeur
+            <strong>sur</strong> la frontière et les valeurs
+            <strong>juste à côté</strong> (le cas échéant).
+          </p>
+
+          <h4>Exemple 1 (Suite) : Domaine Numérique (De 1 à 100)</h4>
+          <ul>
+            <li>
+              <strong>Frontière inférieure (1) :</strong> On teste
+              <span class="highlight">0, 1, 2</span>.
+            </li>
+            <li>
+              <strong>Frontière supérieure (100) :</strong> On teste
+              <span class="highlight">99, 100, 101</span>.
+            </li>
+          </ul>
+
+          <p>
+            <strong>Les valeurs de test critiques pour l'AVF sont :</strong>
+            <span class="highlight">0, 1, 2, 99, 100, 101</span>.
+          </p>
+
+          <div class="success-box">
+            <h4><i class="fas fa-check-circle"></i> Bonne Pratique</h4>
+            <p>
+              Le PCE et l'AVF sont souvent utilisés
+              <strong>ensemble</strong>, car il est également important de
+              prendre en compte les valeurs aux limites lors de la définition
+              des classes d'équivalence. Combinez toujours ces deux techniques
+              pour une couverture optimale.
+            </p>
+          </div>
+
+          <h4>Exemple Redmine : Champ "Pourcentage d'Achèvement" (0-100%)</h4>
+          <p>
+            Le champ "Pourcentage d'achèvement" dans Redmine accepte uniquement
+            des valeurs entières entre 0 et 100.
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Frontière</th>
+                <th>Valeurs AVF</th>
+                <th>Résultat Attendu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Limite inférieure (0)</strong></td>
+                <td class="highlight">-1, 0, 1</td>
+                <td>❌ Rejeté | ✅ Accepté | ✅ Accepté</td>
+              </tr>
+              <tr>
+                <td><strong>Limite supérieure (100)</strong></td>
+                <td class="highlight">99, 100, 101</td>
+                <td>✅ Accepté | ✅ Accepté | ❌ Rejeté</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>3. Cas Spécifiques</h2>
+
+          <h3>A. Cas d'un Domaine avec Sous-Intervalles</h3>
+          <p>
+            Si le système applique des
+            <strong>méthodes de calcul différentes</strong> pour des
+            sous-intervalles au sein du domaine valide, chaque sous-intervalle
+            doit être traité comme une classe d'équivalence valide distincte
+            (CEV).
+          </p>
+
+          <h4>Exemple : Tarification Progressive</h4>
+          <p>
+            Un système de tarification applique des taux différents selon le
+            nombre d'heures :
+          </p>
+          <ul>
+            <li><strong>1 à 20 heures :</strong> Taux normal (100€/h)</li>
+            <li><strong>21 à 60 heures :</strong> Taux réduit (80€/h)</li>
+            <li>
+              <strong>61 à 100 heures :</strong> Taux préférentiel (60€/h)
+            </li>
+          </ul>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Classe</th>
+                <th>Plage</th>
+                <th>Valeur PCE</th>
+                <th>Valeurs AVF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>CEinv 1</strong></td>
+                <td>&lt; 1</td>
+                <td class="highlight">-5</td>
+                <td>0, 1</td>
+              </tr>
+              <tr>
+                <td><strong>CEV 1</strong></td>
+                <td>1 - 20</td>
+                <td class="highlight">12</td>
+                <td>1, 2, 19, 20</td>
+              </tr>
+              <tr>
+                <td><strong>CEV 2</strong></td>
+                <td>21 - 60</td>
+                <td class="highlight">43</td>
+                <td>20, 21, 22, 59, 60</td>
+              </tr>
+              <tr>
+                <td><strong>CEV 3</strong></td>
+                <td>61 - 100</td>
+                <td class="highlight">80</td>
+                <td>60, 61, 62, 99, 100</td>
+              </tr>
+              <tr>
+                <td><strong>CEinv 2</strong></td>
+                <td>&gt; 100</td>
+                <td class="highlight">155</td>
+                <td>100, 101</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>B. Cas d'un Champ de Type Texte</h3>
+          <p>
+            Pour un champ de type texte, il est nécessaire d'analyser l'ensemble
+            des <strong>contraintes définies</strong>. Chaque contrainte donnera
+            lieu à un ensemble de classes d'équivalence valides et invalides.
+          </p>
+
+          <h4>Exemple : Champ Nom/Prénom dans Redmine</h4>
+          <p>
+            Analysons le champ "Nom de l'utilisateur" avec les contraintes
+            suivantes :
+          </p>
+
+          <ol>
+            <li>
+              <strong>Taille du champ :</strong> Minimum 2 caractères, Maximum
+              35 caractères
+              <ul>
+                <li>
+                  <em>Classes Valides (CV) :</em>
+                  <span class="highlight">[2, 35]</span>
+                </li>
+                <li>
+                  <em>Classes Invalides (CI) :</em>
+                  <span class="highlight">0, 1, &gt; 35</span>
+                </li>
+                <li>
+                  <em>Tests AVF :</em>
+                  <span class="highlight">1, 2, 3, 34, 35, 36</span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>Champ Obligatoire :</strong>
+              <ul>
+                <li>
+                  <em>Classe Valide :</em> Champ non vide (ex : chaîne de 10
+                  caractères)
+                </li>
+                <li>
+                  <em>Classe Invalide :</em> Champ vide (ex : chaîne de 0
+                  caractère)
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>Contenu :</strong> N'accepte que les lettres de l'alphabet
+              <ul>
+                <li>
+                  <em>Classe Valide :</em> Chaîne avec uniquement des lettres
+                  (ex : "JohnDoe")
+                </li>
+                <li>
+                  <em>Classe Invalide :</em> Chaîne avec des caractères
+                  alphabétiques <strong>et un caractère spécial</strong> (ex :
+                  "John@Doe")
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>Format :</strong> Le premier caractère doit être majuscule
+              <ul>
+                <li>
+                  <em>Classe Valide :</em> Chaîne avec le premier caractère en
+                  majuscule (ex : "Dupont")
+                </li>
+                <li>
+                  <em>Classe Invalide :</em> Chaîne avec le premier caractère en
+                  minuscule (ex : "dupont")
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <h4>Table de Synthèse des Cas de Test</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Cas</th>
+                <th>Valeur de Test</th>
+                <th>Longueur</th>
+                <th>Obligatoire</th>
+                <th>Format</th>
+                <th>Résultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="highlight">Dupont</td>
+                <td>✅ 6</td>
+                <td>✅ Non vide</td>
+                <td>✅ Maj+lettres</td>
+                <td>✅ Valide</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="highlight">A</td>
+                <td>❌ 1</td>
+                <td>✅ Non vide</td>
+                <td>✅ Maj+lettres</td>
+                <td>❌ Invalide (trop court)</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="highlight">Ab</td>
+                <td>✅ 2 (frontière)</td>
+                <td>✅ Non vide</td>
+                <td>✅ Maj+lettres</td>
+                <td>✅ Valide</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="highlight">(vide)</td>
+                <td>❌ 0</td>
+                <td>❌ Vide</td>
+                <td>-</td>
+                <td>❌ Invalide (champ obligatoire)</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="highlight">dupont</td>
+                <td>✅ 6</td>
+                <td>✅ Non vide</td>
+                <td>❌ Min+lettres</td>
+                <td>❌ Invalide (pas de majuscule)</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="highlight">Dup@ont</td>
+                <td>✅ 7</td>
+                <td>✅ Non vide</td>
+                <td>❌ Maj+lettres+@</td>
+                <td>❌ Invalide (caractère spécial)</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td class="highlight">Duponttreslong...</td>
+                <td>❌ 36</td>
+                <td>✅ Non vide</td>
+                <td>✅ Maj+lettres</td>
+                <td>❌ Invalide (trop long)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>C. Cas d'une Liste de Choix (Liste Déroulante)</h3>
+          <p>Les listes de choix se divisent en deux types:</p>
+
+          <h4>1. Listes de Choix Figées (Statiques)</h4>
+          <ul>
+            <li>Le contenu ne change pas.</li>
+            <li>
+              <strong
+                >Chaque élément de la liste est une classe d'équivalence à part
+                entière</strong
+              >.
+            </li>
+            <li>
+              Chaque élément est donc une valeur à tester, car chaque choix peut
+              influencer différemment le comportement du reste de l'interface.
+            </li>
+          </ul>
+
+          <h4>Exemple Redmine : Priorité de Demande</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Valeur</th>
+                <th>Classe</th>
+                <th>À Tester ?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="highlight">Basse</td>
+                <td>CEV 1</td>
+                <td>✅ Oui</td>
+              </tr>
+              <tr>
+                <td class="highlight">Normale</td>
+                <td>CEV 2</td>
+                <td>✅ Oui</td>
+              </tr>
+              <tr>
+                <td class="highlight">Haute</td>
+                <td>CEV 3</td>
+                <td>✅ Oui</td>
+              </tr>
+              <tr>
+                <td class="highlight">Urgente</td>
+                <td>CEV 4</td>
+                <td>✅ Oui</td>
+              </tr>
+              <tr>
+                <td class="highlight">Immédiate</td>
+                <td>CEV 5</td>
+                <td>✅ Oui</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>2. Listes de Choix Évolutives (Dynamiques)</h4>
+          <ul>
+            <li>
+              Le contenu peut être enrichi par l'utilisateur (ex: liste des
+              fichiers récents, liste des projets).
+            </li>
+            <li>
+              Les éléments ne peuvent pas être prévus à l'avance par le
+              programmeur.
+            </li>
+            <li>
+              Il est acquis que
+              <strong
+                >toutes les valeurs se valent (une seule classe d'équivalence
+                valide)</strong
+              >.
+            </li>
+            <li>
+              Une seule valeur sera prise pour représenter cette classe
+              d'équivalence.
+            </li>
+          </ul>
+
+          <h4>Exemple Redmine : Liste des Projets de l'Utilisateur</h4>
+          <p>
+            La liste des projets disponibles varie selon les droits de
+            l'utilisateur. Il n'est pas nécessaire de tester tous les projets,
+            mais seulement de vérifier que le mécanisme de sélection fonctionne
+            avec <strong>au moins un projet</strong>.
+          </p>
+
+          <h2>4. Stratégie de Test Complète</h2>
+
+          <h3>Processus Recommandé</h3>
+          <ol>
+            <li>
+              <strong>Identifier toutes les contraintes</strong> du champ ou de
+              la fonctionnalité
+            </li>
+            <li>
+              <strong>Définir les classes d'équivalence</strong> (valides et
+              invalides) pour chaque contrainte
+            </li>
+            <li>
+              <strong>Sélectionner une valeur représentative</strong> par classe
+              (PCE)
+            </li>
+            <li>
+              <strong>Identifier les frontières</strong> entre les classes
+            </li>
+            <li>
+              <strong>Ajouter les valeurs frontières</strong> (sur la limite, à
+              gauche, à droite) - AVF
+            </li>
+            <li>
+              <strong>Créer les cas de test</strong> en combinant les
+              contraintes
+            </li>
+          </ol>
+
+          <div class="warning-box">
+            <h4><i class="fas fa-exclamation-triangle"></i> Attention</h4>
+            <p>
+              Pour les champs avec <strong>plusieurs contraintes</strong>, il
+              est important de créer des cas de test qui testent
+              <strong>une seule contrainte à la fois</strong> ainsi que des cas
+              qui testent la <strong>combinaison de contraintes</strong>. Cela
+              permet d'isoler les défauts et de comprendre leur origine.
+            </p>
+          </div>
+
+          <h2>5. Avantages et Limites</h2>
+
+          <h3>✅ Avantages</h3>
+          <ul>
+            <li>
+              <strong>Réduction du nombre de tests</strong> : Évite la
+              redondance en testant des valeurs équivalentes
+            </li>
+            <li>
+              <strong>Couverture systématique</strong> : Garantit que tous les
+              comportements sont testés
+            </li>
+            <li>
+              <strong>Détection précoce des défauts</strong> : Les erreurs de
+              frontière sont fréquentes et critiques
+            </li>
+            <li>
+              <strong>Méthode structurée</strong> : Approche méthodique et
+              documentable
+            </li>
+            <li>
+              <strong>Applicable à tous types de données</strong> : Numérique,
+              texte, listes, dates, etc.
+            </li>
+          </ul>
+
+          <h3>⚠️ Limites</h3>
+          <ul>
+            <li>
+              Ne teste pas les <strong>interactions entre champs</strong> (pour
+              cela, voir le Pairwise Testing)
+            </li>
+            <li>
+              Nécessite une
+              <strong>bonne compréhension des spécifications</strong>
+            </li>
+            <li>
+              Peut être <strong>chronophage</strong> pour les champs avec de
+              nombreuses contraintes
+            </li>
+            <li>
+              Ne remplace pas les tests de
+              <strong>performance ou de sécurité</strong>
+            </li>
+          </ul>
+
+          <hr
+            style="border: none; border-top: 1px solid #eef6fb; margin: 30px 0"
+          />
+
+          <div
+            class="tip-box"
+            style="background: #fff8e1; border-color: #ffe082"
+          >
+            <h4>
+              <i class="fas fa-podcast"></i> Podcast Audio : Classes
+              d'Équivalence et Valeurs Frontières
+            </h4>
+            <p>
+              Écoutez le podcast complet sur les techniques de partitionnement
+              et d'analyse des valeurs frontières (15-18 min) dans la langue de
+              votre choix :
+            </p>
+
+            <div style="margin-top: 15px">
+              <div style="margin-bottom: 15px">
+                <label
+                  for="audio-fr"
+                  style="display: block; font-weight: 600; color: #123d57"
+                >
+                  <i class="fas fa-headset" style="color: #216ba5"></i> 🇫🇷
+                  Français
+                </label>
+                <audio
+                  id="audio-fr"
+                  controls
+                  style="width: 100%; margin-top: 5px"
+                >
+                  <source
+                    src="../../ressources/podcast_classes_equivalences_fr.mp3"
+                    type="audio/mp3"
+                  />
+                  Votre navigateur ne supporte pas le lecteur audio.
+                </audio>
+              </div>
+
+              <div>
+                <label
+                  for="audio-en"
+                  style="display: block; font-weight: 600; color: #123d57"
+                >
+                  <i class="fas fa-headset" style="color: #216ba5"></i> 🇬🇧
+                  English
+                </label>
+                <audio
+                  id="audio-en"
+                  controls
+                  style="width: 100%; margin-top: 5px"
+                >
+                  <source
+                    src="../../ressources/podcast_classes_equivalences_en.mp3"
+                    type="audio/mp3"
+                  />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+
+          <div class="success-box">
+            <h4>
+              <i class="fas fa-check-circle"></i> Résumé des Bonnes Pratiques
+            </h4>
+            <ul style="margin: 10px 0 0 0">
+              <li>
+                Toujours <strong>commencer par PCE</strong> pour identifier les
+                classes
+              </li>
+              <li>
+                <strong>Compléter avec AVF</strong> pour tester les frontières
+              </li>
+              <li>
+                Documenter clairement les <strong>contraintes</strong> de chaque
+                champ
+              </li>
+              <li>
+                Tester les contraintes
+                <strong>individuellement et combinées</strong>
+              </li>
+              <li>
+                Adapter la technique aux
+                <strong>types de données</strong> (numérique, texte, liste)
+              </li>
+              <li>
+                Combiner avec d'autres techniques (Pairwise, décision) pour une
+                couverture complète
+              </li>
+            </ul>
+          </div>
+        </main>
+
+        <aside
+          class="card"
+          aria-label="Navigation et ressources complémentaires"
+        >
+          <h3 style="margin-top: 0; font-size: 16px; color: #0f3e5f">
+            📚 Table des Matières
+          </h3>
+          <ul class="list-unstyled">
+            <li>
+              <a
+                href="#"
+                style="
+                  text-decoration: none;
+                  color: var(--accent);
+                  font-size: 14px;
+                "
+                >Introduction</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                style="
+                  text-decoration: none;
+                  color: var(--accent);
+                  font-size: 14px;
+                "
+                >1. Partitionnement (PCE)</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                style="
+                  text-decoration: none;
+                  color: var(--accent);
+                  font-size: 14px;
+                "
+                >2. Valeurs Frontières (AVF)</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                style="
+                  text-decoration: none;
+                  color: var(--accent);
+                  font-size: 14px;
+                "
+                >3. Cas Spécifiques</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                style="
+                  text-decoration: none;
+                  color: var(--accent);
+                  font-size: 14px;
+                "
+                >4. Stratégie de Test</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                style="
+                  text-decoration: none;
+                  color: var(--accent);
+                  font-size: 14px;
+                "
+                >5. Avantages et Limites</a
+              >
+            </li>
+          </ul>
+
+          <hr
+            style="border: none; border-top: 1px solid #e6edf4; margin: 20px 0"
+          />
+
+          <h3
+            style="
+              font-size: 16px;
+              color: #0f3e5f;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              margin: 20px 0 8px;
+            "
+          >
+            <i class="fas fa-book-open" style="color: var(--accent)"></i>
+            Ressources Complémentaires
+          </h3>
+
+          <ul style="font-size: 14px; line-height: 1.8">
+            <li><strong>ISO/IEC/IEEE 29119-4</strong> : Techniques de test</li>
+            <li>
+              <strong>ISTQB Foundation</strong> : Chapitre sur les techniques de
+              conception
+            </li>
+            <li>
+              <strong>Guide PICT</strong> : Pour tester les combinaisons de
+              paramètres
+            </li>
+          </ul>
+
+          <hr
+            style="border: none; border-top: 1px solid #e6edf4; margin: 20px 0"
+          />
+
+          <h3
+            style="
+              font-size: 16px;
+              color: #0f3e5f;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              margin: 20px 0 8px;
+            "
+          >
+            <i class="fas fa-lightbulb" style="color: var(--accent)"></i>
+            Conseils Pratiques
+          </h3>
+
+          <ul style="font-size: 14px; line-height: 1.8">
+            <li>
+              <strong>Documenter</strong> : Créez un tableau récapitulatif pour
+              chaque champ testé
+            </li>
+            <li>
+              <strong>Prioriser</strong> : Commencez par les champs critiques et
+              obligatoires
+            </li>
+            <li>
+              <strong>Automatiser</strong> : Ces tests sont idéaux pour
+              l'automatisation
+            </li>
+            <li>
+              <strong>Réviser</strong> : Mettez à jour vos tests quand les
+              spécifications changent
+            </li>
+          </ul>
+
+          <hr
+            style="border: none; border-top: 1px solid #e6edf4; margin: 20px 0"
+          />
+
+          <h3
+            style="
+              font-size: 16px;
+              color: #0f3e5f;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              margin: 20px 0 8px;
+            "
+          >
+            <i class="fas fa-question-circle" style="color: var(--accent)"></i>
+            Questions Fréquentes
+          </h3>
+
+          <div style="font-size: 13px">
+            <p style="margin-bottom: 5px">
+              <strong>Q : Combien de valeurs par classe ?</strong>
+            </p>
+            <p class="muted" style="margin-bottom: 15px">
+              R : Une seule valeur représentative suffit pour le PCE. Ajoutez
+              les valeurs frontières avec AVF.
+            </p>
+
+            <p style="margin-bottom: 5px">
+              <strong>Q : Faut-il toujours combiner PCE et AVF ?</strong>
+            </p>
+            <p class="muted" style="margin-bottom: 15px">
+              R : Oui, c'est fortement recommandé car les erreurs se produisent
+              souvent aux frontières.
+            </p>
+
+            <p style="margin-bottom: 5px">
+              <strong>Q : Et pour les combinaisons de champs ?</strong>
+            </p>
+            <p class="muted">
+              R : Utilisez le Pairwise Testing (PICT) pour tester efficacement
+              les interactions entre plusieurs champs.
+            </p>
+          </div>
+
+          <hr
+            style="border: none; border-top: 1px solid #e6edf4; margin: 20px 0"
+          />
+
+          <div class="tip-box">
+            <h4><i class="fas fa-info-circle"></i> Note Importante</h4>
+            <p>
+              Ces techniques sont fondamentales dans le test logiciel et sont au
+              programme de la certification
+              <strong>ISTQB Foundation Level</strong>. Maîtriser ces concepts
+              est essentiel pour tout testeur professionnel.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        <p>
+          &copy; Talel Zid | Version 1.0 — Janvier 2026 | Guide Classes
+          d'Équivalence et Valeurs Frontières |<br />Usage personnel ou
+          éducatif.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

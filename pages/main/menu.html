@@ -153,6 +153,36 @@
         z-index: 1;
       }
 
+      /* Badge Podcast */
+      .nav-card .podcast-badge {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        box-shadow: 0 2px 6px rgba(255, 152, 0, 0.4);
+        z-index: 2;
+        transition: transform 0.2s ease;
+      }
+
+      .nav-card:hover .podcast-badge {
+        transform: scale(1.05);
+      }
+
+      .podcast-badge i {
+        font-size: 1em;
+        color: white;
+        width: auto;
+        margin: 0;
+      }
+
       .nav-card:hover {
         background-color: var(--accent-color);
         color: #ffffff;
@@ -982,18 +1012,6 @@
 
         <a
           class="nav-card"
-          href="../guides/guide_rapport_tests.html"
-          title="Guide de rédaction du rapport de tests"
-        >
-          <i class="fas fa-chart-line" aria-hidden="true"></i>
-          <div class="meta">
-            <div class="title">Guide Rapport de tests</div>
-            <div class="desc">Modèle, métriques et traçabilité</div>
-          </div>
-        </a>
-
-        <a
-          class="nav-card"
           href="../features/features_3_equipes.html"
           title="Voir les User Stories et Critères d'Acceptation"
         >
@@ -1007,24 +1025,15 @@
         <a
           class="nav-card"
           href="../tools/exemple_us.html"
-          title="Exemple de User Story et Critères d'acceptation"
+          title="Exemple de User Story et Critères d'acceptation (avec Podcast audio)"
         >
+          <span class="podcast-badge"
+            ><i class="fas fa-podcast" aria-hidden="true"></i> Podcast</span
+          >
           <i class="fas fa-file-alt" aria-hidden="true"></i>
           <div class="meta">
             <div class="title">Exemple de User Story</div>
             <div class="desc">Modèle d'US et critères</div>
-          </div>
-        </a>
-
-        <a
-          class="nav-card"
-          href="../tools/cheat_sheet_xpath.html"
-          title="Fiche mémo Xpath"
-        >
-          <i class="fas fa-book" aria-hidden="true"></i>
-          <div class="meta">
-            <div class="title">Aide-mémoire Xpath</div>
-            <div class="desc">Sélecteurs et astuces</div>
           </div>
         </a>
 
@@ -1037,18 +1046,6 @@
           <div class="meta">
             <div class="title">Environnement de test</div>
             <div class="desc">Infra, accès, jeux de données</div>
-          </div>
-        </a>
-
-        <a
-          class="nav-card"
-          href="../guides/guide_plan_auto.html"
-          title="Guide du Plan d'automatisation des tests"
-        >
-          <i class="fas fa-robot" aria-hidden="true"></i>
-          <div class="meta">
-            <div class="title">Guide Plan d'automatisation</div>
-            <div class="desc">Structure, téléchargement, bonnes pratiques</div>
           </div>
         </a>
 
@@ -1067,8 +1064,11 @@
         <a
           class="nav-card"
           href="../guides/guide_gherkin.html"
-          title="Guide Gherkin : écrire des scénarios BDD efficaces"
+          title="Guide Gherkin : écrire des scénarios BDD efficaces (avec Podcast audio)"
         >
+          <span class="podcast-badge"
+            ><i class="fas fa-podcast" aria-hidden="true"></i> Podcast</span
+          >
           <i class="fas fa-file-code" aria-hidden="true"></i>
           <div class="meta">
             <div class="title">Guide Gherkin / BDD</div>
@@ -1081,11 +1081,31 @@
           href="../guides/guide_pict.html"
           title="Guide pairwise : utiliser PICT pour générer des données de tests (avec Podcast audio)"
         >
+          <span class="podcast-badge"
+            ><i class="fas fa-podcast" aria-hidden="true"></i> Podcast</span
+          >
           <i class="fas fa-file-code" aria-hidden="true"></i>
           <div class="meta">
             <div class="title">Guide pairwise / PICT</div>
             <div class="desc">
               Pairwise, PICT, génération de données de tests
+            </div>
+          </div>
+        </a>
+
+        <a
+          class="nav-card"
+          href="../guides/guide_classes_equivalences.html"
+          title="Guide Classes d'équivalences et valeurs frontalières (avec Podcast audio)"
+        >
+          <span class="podcast-badge"
+            ><i class="fas fa-podcast" aria-hidden="true"></i> Podcast</span
+          >
+          <i class="fas fa-layer-group" aria-hidden="true"></i>
+          <div class="meta">
+            <div class="title">Classes d'équivalences</div>
+            <div class="desc">
+              Classes d'équivalence et valeurs frontalières
             </div>
           </div>
         </a>
@@ -1115,7 +1135,7 @@
           color: #9ca3af;
         "
       >
-        Dernière mise à jour : 9 novembre 2025
+        Dernière mise à jour : 9 janvier 2026
       </footer>
     </div>
 

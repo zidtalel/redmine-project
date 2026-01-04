@@ -6,16 +6,16 @@
       "message": "Consultez régulièrement les guides et ressources disponibles pour réussir votre projet.",
       "type": "info",
       "active": true,
-      "date": "2025-11-09",
+      "date": "2026-01-13",
       "priority": false
     },
     {
       "id": 2,
       "title": "Date de livraison imminente",
-      "message": "Attention ! la date de livraison du livrable Stratégie de test est proche : 27 janvier. N'oubliez pas de finaliser votre plan et de le soumettre.",
+      "message": "Attention ! la date de livraison du livrable Stratégie de test est proche : 27 janvier. N'oubliez pas de finaliser votre stratégie et de la soumettre.",
       "type": "warning",
       "active": true,
-      "date": "2026-01-12",
+      "date": "2026-01-13",
       "priority": true
     }
   ]

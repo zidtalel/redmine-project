@@ -12,10 +12,10 @@
     {
       "id": 2,
       "title": "Date de livraison imminente",
-      "message": "Attention ! la date de livraison du livrable Plan de test est proche : 13 novembre. N'oubliez pas de finaliser votre plan et de le soumettre.",
+      "message": "Attention ! la date de livraison du livrable Stratégie de test est proche : 27 janvier. N'oubliez pas de finaliser votre plan et de le soumettre.",
       "type": "warning",
       "active": true,
-      "date": "2025-11-10",
+      "date": "2026-01-12",
       "priority": true
     }
   ]

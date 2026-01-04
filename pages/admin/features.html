@@ -629,7 +629,7 @@
     <footer>
       <center>
         <p>
-          &copy; Talel Zid | Version 1.0 — Novembre 2024 |
+          &copy; Talel Zid | Version 1.0 — Novembre 2025 |
           <a href="https://www.redmine.org/" target="_blank"
             >Redmine Project Management</a
           >
@@ -1162,7 +1162,7 @@
                 }
                 
                 visibleStories.forEach(story => {
-                    const cleanText = (text) => text ? text.trim().replace(/"/g, '""') : '';
+                    const cleanText = (text) => text ? text.trim().replace(/\s+/g, ' ').replace(/"/g, '""') : '';
                     
                     const moduleContainer = story.closest('.module-container');
                     const moduleHeader = moduleContainer ? moduleContainer.querySelector('.toggle-module-header').textContent : '';

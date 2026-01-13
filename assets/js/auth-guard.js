@@ -5,8 +5,23 @@
 (function () {
   const isAuthenticated = sessionStorage.getItem("isAuthenticated");
   if (isAuthenticated !== "true") {
-    // Redirection immédiate vers la page de connexion
-    // Utilise un chemin absolu pour fonctionner depuis n'importe quelle page
-    window.location.href = "/pages/main/index.html";
+    // Calcul du chemin relatif vers index.html selon l'emplacement de la page
+    const currentPath = window.location.pathname;
+    let redirectPath = "index.html";
+    
+    // Détection du dossier courant pour construire le bon chemin relatif
+    if (currentPath.includes("/pages/features/") || 
+        currentPath.includes("/pages/guides/") || 
+        currentPath.includes("/pages/admin/") || 
+        currentPath.includes("/pages/tools/")) {
+      redirectPath = "../main/index.html";
+    } else if (currentPath.includes("/pages/main/")) {
+      redirectPath = "index.html";
+    } else {
+      // Fallback : chemin depuis la racine
+      redirectPath = "pages/main/index.html";
+    }
+    
+    window.location.href = redirectPath;
   }
 })();

@@ -6,3 +6,4 @@ exclude:
   - README.md
   - .gitattributes
   - .gitignore
+  - ressources/
